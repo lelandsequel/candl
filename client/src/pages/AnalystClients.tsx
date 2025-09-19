@@ -17,11 +17,16 @@ interface Client {
   avgScore?: number
 }
 
+interface RunningAnalysis {
+  [clientId: string]: boolean
+}
+
 export default function AnalystClients() {
   const [clients, setClients] = useState<Client[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState<'name' | 'created' | 'score' | 'analyses'>('created')
+  const [runningAnalyses, setRunningAnalyses] = useState<RunningAnalysis>({})
 
   useEffect(() => {
     fetchClients()
@@ -35,6 +40,27 @@ export default function AnalystClients() {
       console.error('Error fetching clients:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const runAnalysis = async (client: Client) => {
+    try {
+      setRunningAnalyses(prev => ({ ...prev, [client.id]: true }))
+
+      const response = await axios.post('http://localhost:3001/api/analysis', {
+        url: client.websiteUrl,
+        clientId: client.id
+      })
+
+      // Refresh clients to update analysis count
+      await fetchClients()
+
+      alert(`Analysis started for ${client.companyName}! Analysis ID: ${response.data.analysisId}`)
+    } catch (error) {
+      console.error('Error running analysis:', error)
+      alert('Failed to start analysis. Please try again.')
+    } finally {
+      setRunningAnalyses(prev => ({ ...prev, [client.id]: false }))
     }
   }
 
@@ -177,20 +203,31 @@ export default function AnalystClients() {
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => runAnalysis(client)}
+                      disabled={runningAnalyses[client.id]}
+                      className={`px-4 py-2 rounded-lg transition-colors ${
+                        runningAnalyses[client.id]
+                          ? 'bg-gray-400 text-white cursor-not-allowed'
+                          : 'bg-green-600 text-white hover:bg-green-700'
+                      }`}
+                    >
+                      {runningAnalyses[client.id] ? 'Running...' : 'Run Analysis'}
+                    </button>
                     <Link
-                      to={`/analyst/client/${client.clientId}/dashboard`}
+                      to={`/analyst/client/${client.id}/dashboard`}
                       className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                     >
                       Dashboard
                     </Link>
                     <Link
-                      to={`/analyst/client/${client.clientId}/llm-rankings`}
+                      to={`/analyst/client/${client.id}/llm-rankings`}
                       className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
                     >
                       LLM Rankings
                     </Link>
                     <Link
-                      to={`/analyst/client/${client.clientId}/edit`}
+                      to={`/analyst/client/${client.id}/edit`}
                       className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
                     >
                       Edit
