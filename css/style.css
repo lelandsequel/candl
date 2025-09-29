@@ -808,6 +808,18 @@ p {
   transform: translateX(5px);
 }
 
+
+/* Subtle HTML version link under cards */
+.insight-alt {
+  margin-top: 6px;
+  font-size: 0.8rem; /* ~12-13px */
+  color: var(--medium-gray);
+}
+.insight-alt a {
+  color: var(--medium-gray);
+  text-decoration: underline;
+}
+
 /* Contact Section */
 /* Article Header + Category Themes */
 .article-header {
