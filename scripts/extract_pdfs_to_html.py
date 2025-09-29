@@ -138,27 +138,161 @@ ARTICLE_BODY = """
 </section>
 """
 
-def text_to_html_paragraphs(txt: str) -> str:
-    # Normalize whitespace
+import re
+
+def _preprocess_pdf_text(txt: str) -> str:
+    # Normalize newlines
     txt = txt.replace('\r\n', '\n').replace('\r', '\n')
-    # Collapse excessive spaces
-    txt = '\n'.join([line.strip() for line in txt.split('\n')])
-    # Split into paragraphs on blank lines
-    parts = [p.strip() for p in txt.split('\n\n') if p.strip()]
-    html_ps = []
-    for p in parts:
-        # Replace single newlines inside paragraph with space
-        p_clean = ' '.join([s for s in p.split('\n') if s.strip()])
-        p_clean = html.escape(p_clean)
-        html_ps.append(f"<p>{p_clean}</p>")
-    return "\n\n".join(html_ps)
+    # Remove hyphenation at line breaks: e.g., opportun-
+    txt = re.sub(r"(\w)-\n(\w)", r"\1\2", txt)
+    # Remove common footer/page markers
+    # Drop lines that are just page numbers or 'Page X of Y'
+    lines = []
+    for raw in txt.split('\n'):
+        s = raw.strip()
+        if not s:
+            lines.append("")
+            continue
+        if re.fullmatch(r"\d+", s):
+            continue
+        if re.fullmatch(r"Page\s+\d+(\s*of\s*\d+)?", s, flags=re.IGNORECASE):
+            continue
+        # Collapse excessive in-line spaces
+        s = re.sub(r"[ \t]{2,}", " ", s)
+        lines.append(s)
+    # Collapse triple+ blank lines to one blank
+    out = []
+    blank = False
+    for s in lines:
+        if s == "":
+            if not blank:
+                out.append("")
+            blank = True
+        else:
+            out.append(s)
+            blank = False
+    return "\n".join(out)
+
+
+def _looks_like_heading(line: str) -> bool:
+    if not line:
+        return False
+    if len(line) > 80:
+        return False
+    if line.endswith('.'):
+        return False
+    # Common headings by name
+    common = {
+        "executive summary", "introduction", "overview", "background", "methodology",
+        "findings", "recommendations", "key takeaways", "conclusion", "appendix",
+        "case study", "opportunities", "risks", "roadmap"
+    }
+    low = line.lower().strip(': ')
+    if low in common:
+        return True
+    # All caps or Title Case short lines
+    letters = [c for c in line if c.isalpha()]
+    if letters:
+        upper_ratio = sum(1 for c in letters if c.isupper()) / len(letters)
+        if upper_ratio > 0.85 and len(line.split()) <= 10:
+            return True
+    words = line.split()
+    if 1 <= len(words) <= 8 and all(w[:1].isupper() for w in words if w):
+        return True
+    return False
+
+
+def _is_bullet(line: str) -> bool:
+    return bool(re.match(r"^([\u2022\u2023\u25E6\u2043\u2219\*\-\u2013\u2014\u00B7])\s+", line))
+
+
+def _clean_bullet_text(line: str) -> str:
+    return re.sub(r"^([\u2022\u2023\u25E6\u2043\u2219\*\-\u2013\u2014\u00B7])\s+", "", line).strip()
+
+
+def text_to_html_paragraphs(txt: str) -> str:
+    txt = _preprocess_pdf_text(txt)
+    lines = txt.split('\n')
+    # Merge "soft" blank lines that are artifacts of PDF line wrapping
+    merged: list[str] = []
+    for i, line in enumerate(lines):
+        if line.strip() != "":
+            merged.append(line)
+            continue
+        prev = merged[-1].strip() if merged else ""
+        nxt = lines[i+1].strip() if i + 1 < len(lines) else ""
+        if not prev or not nxt:
+            merged.append("")
+            continue
+        if _is_bullet(nxt) or _looks_like_heading(nxt) or _looks_like_heading(prev):
+            merged.append("")
+            continue
+        # If previous line does not end a sentence, treat this blank as soft and skip it
+        if not re.search(r"[\.!?][\)\"]*\s*$", prev):
+            # skip adding the blank -> merge paragraphs
+            continue
+        merged.append("")
+    lines = merged
+
+    out = []
+    para_buf: list[str] = []
+    list_buf: list[str] = []
+
+    def flush_para():
+        nonlocal para_buf
+        if para_buf:
+            p = ' '.join([s.strip() for s in para_buf if s.strip()])
+            out.append(f"<p>{html.escape(p)}</p>")
+            para_buf = []
+
+    def flush_list():
+        nonlocal list_buf
+        if list_buf:
+            items = ''.join(f"<li>{html.escape(it)}</li>" for it in list_buf)
+            out.append(f"<ul>{items}</ul>")
+            list_buf = []
+
+    for idx, line in enumerate(lines):
+        s = line.strip()
+        if not s:
+            # Peek ahead to find the next non-blank line
+            j = idx + 1
+            while j < len(lines) and lines[j].strip() == "":
+                j += 1
+            nxt = lines[j].strip() if j < len(lines) else ""
+            # Soft blank if we are mid-paragraph without sentence-ending punctuation and next isn't a heading/bullet
+            if para_buf and nxt and not _looks_like_heading(nxt) and not _is_bullet(nxt):
+                prev_join = para_buf[-1]
+                if not re.search(r"[\.!?][\)\"]*\s*$", prev_join):
+                    continue  # soft wrap -> do not break paragraph
+            # Otherwise treat as hard paragraph break
+            flush_para()
+            flush_list()
+            continue
+        if _is_bullet(s):
+            flush_para()
+            list_buf.append(_clean_bullet_text(s))
+            continue
+        if _looks_like_heading(s):
+            flush_para()
+            flush_list()
+            title = s.rstrip(':').strip()
+            out.append(f"<h2>{html.escape(title)}</h2>")
+            continue
+        # Default: part of paragraph
+        para_buf.append(s)
+
+    flush_para()
+    flush_list()
+    return "\n\n".join(out)
 
 
 def build_meta_description(txt: str, fallback: str) -> str:
-    t = ' '.join(txt.split())
+    # Use first non-empty 200 chars from preprocessed text
+    t = _preprocess_pdf_text(txt)
+    t = ' '.join(t.split())
     if not t:
         return fallback
-    # Take first 200 chars
     return t[:200]
 
 
