@@ -2,29 +2,29 @@
 <!-- NOTE: Replace the domain below with your canonical production domain for best SEO. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/insights/state-of-ai-midstream.html</loc>
+    <loc>/insights/source-pdfs/AI%20Transformation%20in%20Midstream%20Oil%20and%20Gas%20Sector.pdf</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>/insights/is-ai-coming-for-your-job.html</loc>
+    <loc>/insights/source-pdfs/Ai%20coming.pdf</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>/insights/best-time-entrepreneurial-dreams.html</loc>
+    <loc>/insights/source-pdfs/Entreprenurial.pdf</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>/insights/answer-engine-optimization.html</loc>
+    <loc>/insights/source-pdfs/AEO.pdf</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>/insights/ai-proof-trades-under-1000.html</loc>
+    <loc>/insights/source-pdfs/AI%20Proof.pdf</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 </urlset>
 
