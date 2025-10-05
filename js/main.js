@@ -816,6 +816,573 @@ class AccessibilityEnhancer {
   }
 }
 
+// C&L Match Form Handler
+class CandlMatchForm {
+  constructor() {
+    this.appState = {
+      currentStep: 1,
+      selectedService: null,
+      formData: {},
+      selectedTier: null,
+      selectedAncillary: [],
+      totalPrice: 0
+    };
+
+    // Pricing data
+    this.pricingTiers = {
+      jobs: [
+        { name: "Basic Match", price: 297, features: ["Resume ATS optimization", "10-15 targeted job matches", "Basic industry report"], recommended: false },
+        { name: "Premium Match", price: 397, features: ["Everything in Basic", "20-25 targeted job matches", "Interview prep guide", "Application tracking template"], recommended: true },
+        { name: "Elite Match", price: 497, features: ["Everything in Premium", "30+ targeted job matches", "Salary negotiation guide", "LinkedIn profile optimization", "Premium industry AI report"], recommended: false }
+      ],
+      scholarships: [
+        { name: "Basic Match", price: 147, features: ["15-20 scholarship opportunities", "Basic application timeline"], recommended: false },
+        { name: "Premium Match", price: 247, features: ["30-40 scholarship opportunities", "Application strategy guide", "Deadline reminder system"], recommended: true },
+        { name: "Elite Match", price: 347, features: ["50+ scholarship opportunities", "Essay review template", "Application timeline & calendar", "Scholarship interview tips"], recommended: false }
+      ],
+      educationalGrants: [
+        { name: "Foundation Match", price: 297, description: "Grants up to $50K", features: ["10-15 foundation grant opportunities", "Grant writing resources"], recommended: false },
+        { name: "Research Match", price: 447, description: "Grants $50K-$250K", features: ["15-20 research grant opportunities", "Budget template", "Timeline planning guide"], recommended: true },
+        { name: "Major Grants Match", price: 697, description: "Grants $250K+", features: ["20+ major grant opportunities", "Preliminary review call", "Grant strategy consultation"], recommended: false }
+      ],
+      businessGrants: [
+        { name: "Small Business Match", price: 347, description: "Grants up to $100K", features: ["15-20 small business grant opportunities", "Application checklist"], recommended: false },
+        { name: "Growth Match", price: 597, description: "Grants $100K-$500K", features: ["20-25 growth grant opportunities", "Compliance checklist", "Financial documentation guide"], recommended: true },
+        { name: "Enterprise Match", price: 897, description: "Grants $500K+", features: ["25+ enterprise grant opportunities", "Strategy consultation (30 min)", "Priority support"], recommended: false }
+      ],
+      rfps: [
+        { name: "Small Contract Match", price: 397, description: "RFPs up to $250K", features: ["10-15 RFP opportunities", "Basic capability statement tips"], recommended: false },
+        { name: "Mid-Tier Match", price: 697, description: "RFPs $250K-$5M", features: ["15-20 RFP opportunities", "SAM.gov optimization tips", "Compliance checklist"], recommended: true },
+        { name: "Large Contract Match", price: 1247, description: "RFPs $5M+", features: ["20+ large RFP opportunities", "Capture strategy session (45 min)", "Past performance template"], recommended: false }
+      ],
+      boardSeats: [
+        { name: "Advisory Match", price: 497, description: "Advisory & startup boards", features: ["5-10 advisory board opportunities", "Board service guide"], recommended: false },
+        { name: "Director Match", price: 897, description: "Paid corporate boards", features: ["10-15 board director opportunities", "Interview preparation guide", "Board compensation insights"], recommended: true },
+        { name: "Elite Board Match", price: 1697, description: "Public company boards", features: ["15+ premium board opportunities", "Personal branding review (30 min)", "LinkedIn profile optimization", "Board readiness assessment"], recommended: false }
+      ]
+    };
+
+    this.ancillaryServices = {
+      scholarships: [
+        { id: 'essay_coaching', name: 'Essay Editing/Coaching', price: 150 },
+        { id: 'app_review', name: 'Application Package Review', price: 147 },
+        { id: 'interview_prep', name: 'Interview Prep', price: 127 }
+      ],
+      educationalGrants: [
+        { id: 'proposal_review', name: 'Grant Proposal Review', price: 297 },
+        { id: 'budget_dev', name: 'Budget Development', price: 197 },
+        { id: 'monthly_alerts', name: 'Monthly Grant Alerts', price: 67, recurring: 'monthly' }
+      ],
+      businessGrants: [
+        { id: 'app_package', name: 'Application Package Development', price: 397 },
+        { id: 'compliance', name: 'Compliance Review', price: 297 },
+        { id: 'quarterly_monitoring', name: 'Quarterly Monitoring', price: 137, recurring: 'quarterly' }
+      ],
+      rfps: [
+        { id: 'capability_stmt', name: 'Capability Statement Development', price: 347 },
+        { id: 'rfp_review', name: 'RFP Response Review', price: 547 },
+        { id: 'teaming', name: 'Teaming Partner Matching', price: 297 },
+        { id: 'monthly_opps', name: 'Monthly Opportunity Alerts', price: 97, recurring: 'monthly' }
+      ],
+      boardSeats: [
+        { id: 'bio_opt', name: 'Board Bio Optimization', price: 197 },
+        { id: 'interview_coach', name: 'Board Interview Coaching', price: 347 },
+        { id: 'linkedin_audit', name: 'LinkedIn Executive Audit', price: 297 },
+        { id: 'quarterly_insights', name: 'Quarterly Board Insights', price: 137, recurring: 'quarterly' }
+      ],
+      universal: [
+        { id: 'rush', name: 'Rush Processing (48hr)', price: 200 },
+        { id: 'premium_report', name: 'Premium AI Industry Report', price: 97 }
+      ]
+    };
+
+    this.init();
+  }
+
+  init() {
+    // Make functions globally available
+    window.selectService = (serviceType) => this.selectService(serviceType);
+    window.goBack = () => this.goBack();
+    window.handleFormSubmit = (event) => this.handleFormSubmit(event);
+    window.selectTier = (tierName, price) => this.selectTier(tierName, price);
+    window.toggleAncillary = (id, price, name) => this.toggleAncillary(id, price, name);
+    window.proceedToReview = () => this.proceedToReview();
+    window.submitOrder = () => this.submitOrder();
+    window.startOver = () => this.startOver();
+  }
+
+  selectService(serviceType) {
+    this.appState.selectedService = serviceType;
+    this.appState.currentStep = 2;
+    this.hideAllSections();
+    document.getElementById('progress-bar').style.display = 'block';
+    document.getElementById('form-section').style.display = 'block';
+    document.getElementById('form-section').classList.add('active');
+    this.updateProgress(2);
+    this.loadForm(serviceType);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  hideAllSections() {
+    document.querySelectorAll('.step').forEach(section => {
+      section.style.display = 'none';
+      section.classList.remove('active');
+    });
+  }
+
+  updateProgress(step) {
+    document.querySelectorAll('.progress-step').forEach((el, index) => {
+      el.classList.remove('active', 'completed');
+      if (index + 1 < step) {
+        el.classList.add('completed');
+      } else if (index + 1 === step) {
+        el.classList.add('active');
+      }
+    });
+  }
+
+  goBack() {
+    if (this.appState.currentStep === 2) {
+      this.hideAllSections();
+      document.getElementById('progress-bar').style.display = 'none';
+      document.getElementById('service-selection').style.display = 'block';
+      document.getElementById('service-selection').classList.add('active');
+      this.appState.currentStep = 1;
+    } else if (this.appState.currentStep === 3) {
+      this.hideAllSections();
+      document.getElementById('progress-bar').style.display = 'block';
+      document.getElementById('form-section').style.display = 'block';
+      document.getElementById('form-section').classList.add('active');
+      this.appState.currentStep = 2;
+      this.updateProgress(2);
+    } else if (this.appState.currentStep === 4) {
+      this.hideAllSections();
+      document.getElementById('progress-bar').style.display = 'block';
+      document.getElementById('pricing-section').style.display = 'block';
+      document.getElementById('pricing-section').classList.add('active');
+      this.appState.currentStep = 3;
+      this.updateProgress(3);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+    const form = document.getElementById('match-form');
+    const formData = new FormData(form);
+    this.appState.formData = {};
+    
+    for (let [key, value] of formData.entries()) {
+      if (key.endsWith('[]')) {
+        const realKey = key.replace('[]', '');
+        if (!this.appState.formData[realKey]) this.appState.formData[realKey] = [];
+        this.appState.formData[realKey].push(value);
+      } else {
+        this.appState.formData[key] = value;
+      }
+    }
+    
+    this.appState.currentStep = 3;
+    this.hideAllSections();
+    document.getElementById('pricing-section').style.display = 'block';
+    document.getElementById('pricing-section').classList.add('active');
+    this.updateProgress(3);
+    this.loadPricingTiers(this.appState.selectedService);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  loadForm(serviceType) {
+    const formFields = this.getFormFields(serviceType);
+    const serviceNames = {
+      jobs: 'Job Matching',
+      scholarships: 'Educational Scholarships',
+      educationalGrants: 'Educational Grants',
+      businessGrants: 'Business Grants',
+      rfps: 'Public Sector RFPs',
+      boardSeats: 'Board Director Seats'
+    };
+    
+    document.getElementById('form-title').textContent = `${serviceNames[serviceType]} - Your Information`;
+    const container = document.getElementById('form-fields');
+    container.innerHTML = '';
+    
+    formFields.forEach(field => {
+      container.innerHTML += this.createFormField(field);
+    });
+  }
+
+  getFormFields(serviceType) {
+    const fields = {
+      jobs: [
+        { name: 'current_title', type: 'text', label: 'Current Job Title', required: true },
+        { name: 'years_experience', type: 'number', label: 'Years of Experience', required: true },
+        { name: 'target_roles', type: 'textarea', label: 'Target Role(s)', required: true },
+        { name: 'salary_min', type: 'number', label: 'Minimum Desired Salary', required: true },
+        { name: 'salary_max', type: 'number', label: 'Maximum Desired Salary', required: true },
+        { name: 'location_type', type: 'select', label: 'Location Preference', options: ['Remote', 'Hybrid', 'Onsite', 'Flexible'], required: true },
+        { name: 'location_area', type: 'text', label: 'Geographic Location (if applicable)' },
+        { name: 'resume', type: 'file', label: 'Resume Upload', accept: '.pdf,.docx', required: true },
+        { name: 'email', type: 'email', label: 'Email', required: true },
+        { name: 'phone', type: 'tel', label: 'Phone' }
+      ],
+      scholarships: [
+        { name: 'education_level', type: 'select', label: 'Current Education Level', required: true, options: ['High School Senior', 'Undergrad Year 1', 'Undergrad Year 2', 'Undergrad Year 3', 'Undergrad Year 4', 'Graduate Student', 'Doctoral Candidate'] },
+        { name: 'major', type: 'text', label: 'Intended/Current Major', required: true },
+        { name: 'gpa', type: 'number', label: 'Current GPA (0.0-4.0)', min: 0, max: 4, step: 0.01, required: true },
+        { name: 'target_degree', type: 'select', label: 'Target Degree Level', required: true, options: ['Associates', 'Bachelors', 'Masters', 'Doctoral'] },
+        { name: 'financial_need', type: 'select', label: 'Estimated Financial Need', required: true, options: ['Under $10,000', '$10,000-$25,000', '$25,000-$50,000', '$50,000-$75,000', 'Over $75,000'] },
+        { name: 'geographic_pref', type: 'text', label: 'Geographic Preferences (states/regions)' },
+        { name: 'special_categories', type: 'checkbox', label: 'Special Categories (check all that apply)', options: ['First-Generation College Student', 'Minority Student', 'Veteran', 'Disability', 'Other'] },
+        { name: 'achievements', type: 'textarea', label: 'Academic Achievements', maxlength: 500, required: true },
+        { name: 'extracurriculars', type: 'textarea', label: 'Extracurricular Activities', maxlength: 500 },
+        { name: 'resume', type: 'file', label: 'Resume/CV Upload', accept: '.pdf,.docx', required: true },
+        { name: 'email', type: 'email', label: 'Email', required: true },
+        { name: 'phone', type: 'tel', label: 'Phone' }
+      ],
+      educationalGrants: [
+        { name: 'institution', type: 'text', label: 'Current Institution', required: true },
+        { name: 'position', type: 'text', label: 'Current Position/Title', required: true },
+        { name: 'research_area', type: 'text', label: 'Research Area/Field', required: true },
+        { name: 'grant_purpose', type: 'textarea', label: 'Grant Purpose & Project Description', maxlength: 1000, required: true },
+        { name: 'funding_needed', type: 'number', label: 'Funding Amount Needed ($)', required: true },
+        { name: 'project_timeline', type: 'text', label: 'Project Timeline', placeholder: 'e.g., 24 months, Jan 2026 - Dec 2027' },
+        { name: 'previous_grants', type: 'textarea', label: 'Previous Grants Received (if any)', maxlength: 500 },
+        { name: 'publications', type: 'textarea', label: 'Publications/Credentials Summary', maxlength: 500 },
+        { name: 'cv', type: 'file', label: 'CV Upload', accept: '.pdf,.docx', required: true },
+        { name: 'email', type: 'email', label: 'Email', required: true },
+        { name: 'phone', type: 'tel', label: 'Phone' }
+      ],
+      businessGrants: [
+        { name: 'business_name', type: 'text', label: 'Business Name', required: true },
+        { name: 'industry', type: 'select', label: 'Industry', required: true, options: ['Agriculture', 'Construction', 'Manufacturing', 'Technology', 'Healthcare', 'Retail', 'Services', 'Other'] },
+        { name: 'business_stage', type: 'select', label: 'Business Stage', required: true, options: ['Startup (0-2 years)', 'Early-stage (2-5 years)', 'Growth (5-10 years)', 'Established (10+ years)'] },
+        { name: 'years_operating', type: 'number', label: 'Years in Operation', required: true },
+        { name: 'annual_revenue', type: 'select', label: 'Annual Revenue Range', required: true, options: ['Under $100K', '$100K-$500K', '$500K-$1M', '$1M-$5M', '$5M-$10M', 'Over $10M'] },
+        { name: 'employees', type: 'number', label: 'Number of Employees', required: true },
+        { name: 'ownership', type: 'checkbox', label: 'Ownership Structure (check all that apply)', options: ['Minority-Owned', 'Women-Owned', 'Veteran-Owned', 'None of the above'] },
+        { name: 'grant_purpose', type: 'checkbox', label: 'Grant Purpose (check all that apply)', required: true, options: ['Business Expansion', 'R&D', 'Equipment Purchase', 'Working Capital', 'Marketing', 'Hiring', 'Other'] },
+        { name: 'location', type: 'text', label: 'Business Location (City, State)', required: true },
+        { name: 'funding_needed', type: 'number', label: 'Funding Amount Needed ($)', required: true },
+        { name: 'business_plan', type: 'file', label: 'Business Plan/Executive Summary Upload', accept: '.pdf,.docx', required: true },
+        { name: 'email', type: 'email', label: 'Email', required: true },
+        { name: 'phone', type: 'tel', label: 'Phone', required: true }
+      ],
+      rfps: [
+        { name: 'naics_codes', type: 'text', label: 'Primary NAICS Codes (comma-separated)', required: true, placeholder: 'e.g., 541511, 541512' },
+        { name: 'gsa_schedule', type: 'select', label: 'GSA Schedule Status', options: ['Active', 'In Progress', 'Not Applicable'], required: true },
+        { name: 'certifications', type: 'checkbox', label: 'Certifications (check all that apply)', options: ['8(a)', 'HUBZone', 'WOSB (Women-Owned Small Business)', 'SDVOSB (Service-Disabled Veteran-Owned)', 'SDB (Small Disadvantaged Business)', 'VOSB (Veteran-Owned)', 'None'] },
+        { name: 'past_performance', type: 'textarea', label: 'Past Performance Summary', required: true, placeholder: 'Include contract numbers, values, and agencies worked with', maxlength: 1000 },
+        { name: 'bonding_capacity', type: 'number', label: 'Bonding Capacity ($)' },
+        { name: 'service_areas', type: 'text', label: 'Geographic Service Areas', required: true, placeholder: 'e.g., Texas, Louisiana, Oklahoma OR Nationwide' },
+        { name: 'contract_size', type: 'checkbox', label: 'Contract Size Preference (check all that apply)', options: ['Micro (under $10K)', 'Small ($10K-$250K)', 'Medium ($250K-$5M)', 'Large ($5M+)'] },
+        { name: 'capability_statement', type: 'file', label: 'Capability Statement Upload', accept: '.pdf,.docx', required: true },
+        { name: 'email', type: 'email', label: 'Email', required: true },
+        { name: 'phone', type: 'tel', label: 'Phone', required: true }
+      ],
+      boardSeats: [
+        { name: 'executive_experience', type: 'textarea', label: 'Current/Recent Executive Experience', required: true, placeholder: 'List titles, companies, and years of service', maxlength: 1000 },
+        { name: 'board_experience', type: 'textarea', label: 'Previous Board Experience (if any)', placeholder: 'Number of boards, types, years served', maxlength: 500 },
+        { name: 'industry_expertise', type: 'checkbox', label: 'Industry Expertise (check all that apply)', required: true, options: ['Technology', 'Finance/Banking', 'Healthcare', 'Manufacturing', 'Retail/E-commerce', 'Energy', 'Real Estate', 'Nonprofit', 'Other'] },
+        { name: 'functional_expertise', type: 'checkbox', label: 'Functional Expertise (check all that apply)', required: true, options: ['Finance/Audit', 'Technology/Digital', 'Legal/Compliance', 'Marketing/Sales', 'Operations', 'Human Resources', 'Strategy', 'Other'] },
+        { name: 'board_preferences', type: 'checkbox', label: 'Board Type Preferences (check all that apply)', options: ['Startup', 'Growth-stage Private', 'Public Company', 'Nonprofit', 'Family Business'] },
+        { name: 'compensation_pref', type: 'checkbox', label: 'Compensation Preference (check all that apply)', options: ['Paid (Cash)', 'Equity', 'Unpaid/Pro-bono', 'Flexible'] },
+        { name: 'geographic_pref', type: 'text', label: 'Geographic Preferences (if any)' },
+        { name: 'diversity_focus', type: 'text', label: 'Diversity/ESG Focus Areas (if any)' },
+        { name: 'time_commitment', type: 'select', label: 'Monthly Time Commitment Available', options: ['5-10 hours', '10-20 hours', '20+ hours'] },
+        { name: 'linkedin_url', type: 'url', label: 'LinkedIn Profile URL', required: true },
+        { name: 'board_bio', type: 'file', label: 'Board Bio/Executive Summary Upload', accept: '.pdf,.docx', required: true },
+        { name: 'email', type: 'email', label: 'Email', required: true },
+        { name: 'phone', type: 'tel', label: 'Phone', required: true }
+      ]
+    };
+    return fields[serviceType] || [];
+  }
+
+  createFormField(field) {
+    let html = `<div class="form-group"><label for="${field.name}">${field.label}${field.required ? ' *' : ''}</label>`;
+    
+    switch(field.type) {
+      case 'text':
+      case 'email':
+      case 'tel':
+      case 'number':
+      case 'url':
+        html += `<input type="${field.type}" id="${field.name}" name="${field.name}" ${field.required ? 'required' : ''} ${field.placeholder ? `placeholder="${field.placeholder}"` : ''} ${field.min !== undefined ? `min="${field.min}"` : ''} ${field.max !== undefined ? `max="${field.max}"` : ''} ${field.step ? `step="${field.step}"` : ''}>`;
+        break;
+      case 'textarea':
+        html += `<textarea id="${field.name}" name="${field.name}" ${field.required ? 'required' : ''} ${field.maxlength ? `maxlength="${field.maxlength}"` : ''} ${field.placeholder ? `placeholder="${field.placeholder}"` : ''} rows="4"></textarea>`;
+        if (field.maxlength) html += `<span class="char-count">0/${field.maxlength}</span>`;
+        break;
+      case 'select':
+        html += `<select id="${field.name}" name="${field.name}" ${field.required ? 'required' : ''}><option value="">-- Select --</option>`;
+        field.options.forEach(opt => { html += `<option value="${opt}">${opt}</option>`; });
+        html += `</select>`;
+        break;
+      case 'checkbox':
+        field.options.forEach(opt => {
+          html += `<div class="checkbox-option"><input type="checkbox" id="${field.name}_${opt}" name="${field.name}[]" value="${opt}"><label for="${field.name}_${opt}">${opt}</label></div>`;
+        });
+        break;
+      case 'file':
+        html += `<input type="file" id="${field.name}" name="${field.name}" ${field.required ? 'required' : ''} ${field.accept ? `accept="${field.accept}"` : ''}><small>Max file size: 5MB. Accepted formats: PDF, DOCX</small>`;
+        break;
+    }
+    html += `<div class="error-message" id="${field.name}-error"></div></div>`;
+    return html;
+  }
+
+  loadPricingTiers(serviceType) {
+    const tiers = this.pricingTiers[serviceType];
+    const container = document.getElementById('pricing-tiers');
+    container.innerHTML = '';
+    
+    tiers.forEach(tier => {
+      const tierCard = `<div class="pricing-tier ${tier.recommended ? 'recommended' : ''}" onclick="selectTier('${tier.name}', ${tier.price})">
+        ${tier.recommended ? '<div class="recommended-badge">RECOMMENDED</div>' : ''}
+        <h3 class="tier-name">${tier.name}</h3>
+        ${tier.description ? `<p class="tier-description">${tier.description}</p>` : ''}
+        <div class="tier-price">${tier.price}</div>
+        <ul class="tier-features">${tier.features.map(f => `<li>${f}</li>`).join('')}</ul>
+        <button class="select-tier-btn">Select This Tier</button>
+      </div>`;
+      container.innerHTML += tierCard;
+    });
+    
+    this.loadAncillaryServices(serviceType);
+  }
+
+  selectTier(tierName, price) {
+    this.appState.selectedTier = { name: tierName, price: price };
+    document.querySelectorAll('.pricing-tier').forEach(el => el.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+    this.calculateTotal();
+  }
+
+  loadAncillaryServices(serviceType) {
+    const services = this.ancillaryServices[serviceType] || [];
+    const universal = this.ancillaryServices.universal || [];
+    const allServices = [...services, ...universal];
+    const container = document.getElementById('ancillary-options');
+    container.innerHTML = '';
+    
+    allServices.forEach(svc => {
+      const priceDisplay = svc.priceHigh ? `$${svc.price}-$${svc.priceHigh}` : `$${svc.price}${svc.recurring ? `/${svc.recurring}` : ''}`;
+      container.innerHTML += `<div class="ancillary-option">
+        <input type="checkbox" id="${svc.id}" onchange="toggleAncillary('${svc.id}', ${svc.price}, '${svc.name}')">
+        <label for="${svc.id}">
+          <span class="service-name">${svc.name}</span>
+          <span class="service-price">${priceDisplay}</span>
+        </label>
+      </div>`;
+    });
+  }
+
+  toggleAncillary(id, price, name) {
+    const checkbox = document.getElementById(id);
+    if (checkbox.checked) {
+      this.appState.selectedAncillary.push({ id, price, name });
+    } else {
+      this.appState.selectedAncillary = this.appState.selectedAncillary.filter(a => a.id !== id);
+    }
+    this.calculateTotal();
+  }
+
+  calculateTotal() {
+    const tierPrice = this.appState.selectedTier ? this.appState.selectedTier.price : 0;
+    const ancillaryTotal = this.appState.selectedAncillary.reduce((sum, a) => sum + a.price, 0);
+    this.appState.totalPrice = tierPrice + ancillaryTotal;
+    document.getElementById('running-total').textContent = `$${this.appState.totalPrice}`;
+  }
+
+  proceedToReview() {
+    if (!this.appState.selectedTier) {
+      alert('Please select a pricing tier first');
+      return;
+    }
+    this.appState.currentStep = 4;
+    this.hideAllSections();
+    document.getElementById('review-section').style.display = 'block';
+    document.getElementById('review-section').classList.add('active');
+    this.updateProgress(4);
+    this.displayOrderSummary();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  displayOrderSummary() {
+    const summary = document.getElementById('order-summary');
+    const serviceNames = {
+      jobs: 'Job Matching',
+      scholarships: 'Educational Scholarships',
+      educationalGrants: 'Educational Grants',
+      businessGrants: 'Business Grants',
+      rfps: 'Public Sector RFPs',
+      boardSeats: 'Board Director Seats'
+    };
+    
+    let html = `<div class="summary-section">
+      <h3>Service Selected</h3>
+      <p>${serviceNames[this.appState.selectedService]}</p>
+    </div>
+    <div class="summary-section">
+      <h3>Tier Selected</h3>
+      <p>${this.appState.selectedTier.name} - $${this.appState.selectedTier.price}</p>
+    </div>
+    <div class="summary-section">
+      <h3>Your Information</h3>
+      <ul>`;
+    
+    for (let [key, value] of Object.entries(this.appState.formData)) {
+      if (!['resume', 'cv', 'business_plan', 'capability_statement', 'board_bio'].includes(key)) {
+        html += `<li><strong>${this.formatFieldName(key)}:</strong> ${Array.isArray(value) ? value.join(', ') : value}</li>`;
+      }
+    }
+    html += `</ul></div>`;
+    
+    if (this.appState.selectedAncillary.length > 0) {
+      html += `<div class="summary-section"><h3>Add-On Services</h3><ul>`;
+      this.appState.selectedAncillary.forEach(a => {
+        html += `<li>${a.name} - $${a.price}</li>`;
+      });
+      html += `</ul></div>`;
+    }
+    
+    html += `<div class="summary-section total-section">
+      <h3>Total Investment</h3>
+      <p class="total-price">$${this.appState.totalPrice}</p>
+    </div>`;
+    
+    summary.innerHTML = html;
+  }
+
+  formatFieldName(key) {
+    return key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }
+
+  async submitOrder() {
+    const btn = event.target;
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    
+    try {
+      // Get the appropriate Netlify form based on service type
+      const formName = `candlmatch-${this.appState.selectedService.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+      const netlifyForm = document.querySelector(`form[name="${formName}"]`);
+      
+      if (!netlifyForm) {
+        throw new Error('Form not found');
+      }
+
+      // Populate the hidden Netlify form with our data
+      const formData = new FormData();
+      formData.append('form-name', formName);
+      formData.append('service-type', this.getServiceDisplayName(this.appState.selectedService));
+      formData.append('selected_tier', JSON.stringify(this.appState.selectedTier));
+      formData.append('ancillary_services', JSON.stringify(this.appState.selectedAncillary));
+      formData.append('total_price', this.appState.totalPrice);
+
+      // Add all form data
+      for (let [key, value] of Object.entries(this.appState.formData)) {
+        if (Array.isArray(value)) {
+          formData.append(key, value.join(', '));
+        } else {
+          formData.append(key, value);
+        }
+      }
+
+      // Handle file upload if present
+      const fileInput = document.querySelector('#match-form input[type="file"]');
+      if (fileInput && fileInput.files[0]) {
+        const fileFieldName = fileInput.name;
+        formData.append(fileFieldName, fileInput.files[0]);
+      }
+
+      // Submit to Netlify
+      const response = await fetch('/', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Submission failed');
+      }
+
+      // Generate order ID
+      const orderId = 'CLM-' + this.appState.selectedService.toUpperCase().substring(0, 3) + '-' + Date.now().toString().slice(-6);
+      
+      this.hideAllSections();
+      document.getElementById('progress-bar').style.display = 'none';
+      document.getElementById('success-section').style.display = 'block';
+      document.getElementById('success-section').classList.add('active');
+      this.displayFinalOrderDetails(orderId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('There was an error submitting your order. Please try again or contact us at match@candlstrategy.com');
+      btn.disabled = false;
+      btn.textContent = 'Submit Order';
+    }
+  }
+
+  getServiceDisplayName(serviceType) {
+    const names = {
+      jobs: 'Job Matching',
+      scholarships: 'Educational Scholarships',
+      educationalGrants: 'Educational Grants',
+      businessGrants: 'Business Grants',
+      rfps: 'Public Sector RFPs',
+      boardSeats: 'Board Director Seats'
+    };
+    return names[serviceType] || serviceType;
+  }
+
+  displayFinalOrderDetails(orderId) {
+    const container = document.getElementById('final-order-details');
+    const serviceNames = {
+      jobs: 'Job Matching',
+      scholarships: 'Educational Scholarships',
+      educationalGrants: 'Educational Grants',
+      businessGrants: 'Business Grants',
+      rfps: 'Public Sector RFPs',
+      boardSeats: 'Board Director Seats'
+    };
+    
+    container.innerHTML = `
+      <p><strong>Service:</strong> ${serviceNames[this.appState.selectedService]}</p>
+      <p><strong>Tier:</strong> ${this.appState.selectedTier.name}</p>
+      <p><strong>Total:</strong> $${this.appState.totalPrice}</p>
+      <p><strong>Order ID:</strong> ${orderId}</p>
+    `;
+  }
+
+  startOver() {
+    this.appState = {
+      currentStep: 1,
+      selectedService: null,
+      formData: {},
+      selectedTier: null,
+      selectedAncillary: [],
+      totalPrice: 0
+    };
+    
+    this.hideAllSections();
+    document.getElementById('progress-bar').style.display = 'none';
+    document.getElementById('service-selection').style.display = 'block';
+    document.getElementById('service-selection').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// Character count functionality for textareas
+document.addEventListener('input', (e) => {
+  if (e.target.tagName === 'TEXTAREA' && e.target.hasAttribute('maxlength')) {
+    const charCount = e.target.parentElement.querySelector('.char-count');
+    if (charCount) {
+      charCount.textContent = `${e.target.value.length}/${e.target.getAttribute('maxlength')}`;
+    }
+  }
+});
+
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🕯️ C&L Strategy - Illuminating your digital experience...');
@@ -834,6 +1401,7 @@ document.addEventListener('DOMContentLoaded', () => {
   new PerformanceMonitor();
   new AccessibilityEnhancer();
   new OrderForm();
+  new CandlMatchForm();
 
   console.log('✨ All systems illuminated and ready for strategic excellence!');
 });

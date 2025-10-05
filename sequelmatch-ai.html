@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SequelMatch AI — Beat the ATS, Land Interviews | C&L Strategy</title>
-  <meta name="description" content="SequelMatch AI rewrites your resume for ATS, analyzes your work history, and delivers a targeted report of high‑fit roles posted very recently.">
+  <title>C&L Match - Professional Matching Services | C&L Strategy</title>
+  <meta name="description" content="C&L Match provides professional matching services across careers, education, grants, and leadership. Expert guidance for jobs, scholarships, business grants, RFPs, and board positions.">
+  
+  <!-- CSS Dependencies -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css?v=20250927">
+  
+  <!-- Favicon - Candle Icon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='25' rx='8' ry='12' fill='%23ff6b35'/%3E%3Crect x='42' y='35' width='16' height='40' rx='2' fill='%23d4af37'/%3E%3Crect x='40' y='75' width='20' height='8' rx='4' fill='%23b8860b'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -17,7 +21,28 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="nav-logo">
-        <div class="logo-icon"><i class="fas fa-lightbulb"></i></div>
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" class="candle-icon">
+            <defs>
+              <linearGradient id="flame-nav" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ff6b35"/>
+                <stop offset="100%" stop-color="#d4af37"/>
+              </linearGradient>
+              <linearGradient id="candle-nav" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#f4d03f"/>
+                <stop offset="100%" stop-color="#b8860b"/>
+              </linearGradient>
+            </defs>
+            <!-- Stylized flame -->
+            <path d="M12 3 C10 5, 10 7, 12 8.5 C14 7, 14 5, 12 3 Z" fill="url(#flame-nav)"/>
+            <!-- Elegant candle body -->
+            <rect x="10.5" y="8.5" width="3" height="11" rx="1.5" fill="url(#candle-nav)"/>
+            <!-- Base -->
+            <ellipse cx="12" cy="19.5" rx="2" ry="0.8" fill="#b8860b"/>
+            <!-- Wick -->
+            <path d="M12 5 L12 6.5" stroke="#ff6b35" stroke-width="0.5" opacity="0.8"/>
+          </svg>
+        </div>
         <div class="logo-text">
           <span class="company-name">C&L Strategy</span>
           <span class="tagline">Illuminating Solutions</span>
@@ -27,7 +52,7 @@
         <a href="index.html" class="nav-link">Home</a>
         <a href="services.html" class="nav-link">Services</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="sequelmatch-ai.html" class="nav-link active">SequelMatch AI</a>
+        <a href="sequelmatch-ai.html" class="nav-link active">C&L Match</a>
         <a href="insights.html" class="nav-link">Insights</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </div>
@@ -37,249 +62,303 @@
     </div>
   </nav>
 
-  <!-- Header -->
-  <section class="page-header">
-    <div class="container">
-      <div class="header-content">
-        <h1 class="page-title">SequelMatch AI</h1>
-        <p class="page-subtitle">Beat the ATS. Get matched to roles posted very recently. Move fast with confidence.</p>
+  <div class="candlmatch-container">
+    
+    <!-- STEP 1: Service Selection -->
+    <section id="service-selection" class="step active">
+      <div class="header-section">
+        <h1>C&L Match</h1>
+        <p class="tagline">Professional matching services across careers, education, grants, and leadership</p>
+      </div>
+      
+      <div class="container">
+        <h2 class="section-title">Choose Your Matching Service</h2>
+        <div class="service-grid">
+          
+          <div class="service-card" onclick="selectService('jobs')">
+            <div class="service-icon">💼</div>
+            <h3>Job Matching</h3>
+            <p>Get matched to high-fit roles posted in the last few weeks</p>
+            <span class="starting-price">Starting at $297</span>
+            <button class="select-btn">Select Service →</button>
+          </div>
+          
+          <div class="service-card" onclick="selectService('scholarships')">
+            <div class="service-icon">🎓</div>
+            <h3>Educational Scholarships</h3>
+            <p>Find scholarship opportunities tailored to your academic profile</p>
+            <span class="starting-price">Starting at $147</span>
+            <button class="select-btn">Select Service →</button>
+          </div>
+          
+          <div class="service-card" onclick="selectService('educationalGrants')">
+            <div class="service-icon">🔬</div>
+            <h3>Educational Grants</h3>
+            <p>Discover research and academic funding opportunities</p>
+            <span class="starting-price">Starting at $297</span>
+            <button class="select-btn">Select Service →</button>
+          </div>
+          
+          <div class="service-card" onclick="selectService('businessGrants')">
+            <div class="service-icon">🚀</div>
+            <h3>Business Grants</h3>
+            <p>Access funding for business growth and development</p>
+            <span class="starting-price">Starting at $347</span>
+            <button class="select-btn">Select Service →</button>
+          </div>
+          
+          <div class="service-card" onclick="selectService('rfps')">
+            <div class="service-icon">🏛️</div>
+            <h3>Public Sector RFPs</h3>
+            <p>Match with government contract opportunities</p>
+            <span class="starting-price">Starting at $397</span>
+            <button class="select-btn">Select Service →</button>
+          </div>
+          
+          <div class="service-card" onclick="selectService('boardSeats')">
+            <div class="service-icon">👔</div>
+            <h3>Board Director Seats</h3>
+            <p>Find strategic board and advisory positions</p>
+            <span class="starting-price">Starting at $497</span>
+            <button class="select-btn">Select Service →</button>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar" class="progress-container" style="display: none;">
+      <div class="container">
+        <button class="back-btn" onclick="goBack()">← Back</button>
+        <div class="progress-steps">
+          <div class="progress-step" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-label">Select Service</div>
+          </div>
+          <div class="progress-step active" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-label">Enter Details</div>
+          </div>
+          <div class="progress-step" data-step="3">
+            <div class="step-number">3</div>
+            <div class="step-label">Choose Tier</div>
+          </div>
+          <div class="progress-step" data-step="4">
+            <div class="step-number">4</div>
+            <div class="step-label">Review & Submit</div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Overview -->
-  <section class="service-section">
-    <div class="container">
-      <div class="service-content">
-        <div class="service-info">
-          <div class="service-icon-large"><i class="fas fa-user-check"></i></div>
-          <h2 class="service-title">What it is</h2>
-          <p class="service-description">
-            SequelMatch AI is our candidate‑first job match service. You send your resume. We rewrite it for ATS alignment and human readability, analyze your career trajectory, and deliver a targeted report of high‑fit roles posted in the last few weeks that are actively hiring.
+    <!-- STEP 2: Form Section -->
+    <section id="form-section" class="step" style="display: none;">
+      <div class="container">
+        <div class="form-container">
+          <h2 id="form-title">Complete Your Information</h2>
+          <form id="match-form" onsubmit="handleFormSubmit(event)">
+            <div id="form-fields"></div>
+            <button type="submit" class="submit-btn">Continue to Pricing →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: Pricing Section -->
+    <section id="pricing-section" class="step" style="display: none;">
+      <div class="container">
+        <div class="pricing-container">
+          <h2>Choose Your Match Tier</h2>
+          <div id="pricing-tiers" class="pricing-grid"></div>
+          <div class="ancillary-services">
+            <h3>Add-On Services</h3>
+            <div id="ancillary-options"></div>
+          </div>
+          <div class="total-calculator">
+            <h3>Your Total: <span id="running-total">$0</span></h3>
+            <button onclick="proceedToReview()" class="submit-btn">Review Order →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4: Review Section -->
+    <section id="review-section" class="step" style="display: none;">
+      <div class="container">
+        <div class="review-container">
+          <h2>Review Your Order</h2>
+          <div id="order-summary"></div>
+          <button onclick="submitOrder()" class="submit-btn">Submit Order</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Section -->
+    <section id="success-section" class="step" style="display: none;">
+      <div class="container">
+        <div class="success-container">
+          <div class="success-icon">✓</div>
+          <h1>Request Submitted Successfully!</h1>
+          <p>Thank you for choosing C&L Match</p>
+          
+          <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="final-order-details"></div>
+          </div>
+          
+          <div class="next-steps">
+            <h2>What Happens Next?</h2>
+            <ol>
+              <li>We'll review your submission within 48 hours</li>
+              <li>You'll receive a confirmation email with payment instructions</li>
+              <li>Once payment is confirmed, we'll begin your personalized match search</li>
+              <li>Expect your results within 7-10 business days (or 48 hours for rush processing)</li>
+            </ol>
+          </div>
+          
+          <p class="contact-info">
+            Questions? Email us at <a href="mailto:match@candlstrategy.com">match@candlstrategy.com</a>
           </p>
-          <ul class="offering-features">
-            <li>ATS‑optimized master resume + role‑specific variants</li>
-            <li>Targeted list of high‑fit roles with direct links</li>
-            <li>Per‑role alignment notes and outreach tips</li>
-          </ul>
-        </div>
-        <div class="service-visual">
-          <div class="digital-graphic">
-            <div class="code-window"><div class="window-header"></div><div class="code-content"><div class="code-line">match(candidate) → interviews</div></div></div>
-          </div>
+          
+          <button onclick="startOver()" class="submit-btn">Start Another Match Request</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- How it works -->
-  <section class="service-section alt-bg">
-    <div class="container">
-      <div class="service-content reverse">
-        <div class="service-visual">
-          <div class="process-graphic">
-            <div class="process-flow">
-              <div class="process-step"><div class="step-number">1</div><div class="step-label">Intake</div></div>
-              <div class="process-arrow">→</div>
-              <div class="process-step"><div class="step-number">2</div><div class="step-label">Analyze</div></div>
-              <div class="process-arrow">→</div>
-              <div class="process-step"><div class="step-number">3</div><div class="step-label">Rewrite</div></div>
-              <div class="process-arrow">→</div>
-              <div class="process-step"><div class="step-number">4</div><div class="step-label">Match</div></div>
-              <div class="process-arrow">→</div>
-              <div class="process-step"><div class="step-number">5</div><div class="step-label">Action</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="service-info">
-          <h2 class="service-title">How it works</h2>
-          <ol class="offering-features">
-            <li>Intake: share your resume and target roles</li>
-            <li>Analysis: map experience to in‑demand patterns and keywords</li>
-            <li>Rewrite: produce an ATS‑optimized resume + role variants</li>
-            <li>Match: compile a list of recently posted, high‑urgency roles</li>
-            <li>Action Plan: application notes, outreach templates, next steps</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <!-- Why it works -->
-  <section class="service-section">
-    <div class="container">
-      <div class="service-content">
-        <div class="service-info">
-          <div class="service-icon-large"><i class="fas fa-shield-alt"></i></div>
-          <h2 class="service-title">Why it works (beating the ATS)</h2>
-          <ul class="offering-features">
-            <li>Aligns structure and keywords without gimmicky stuffing</li>
-            <li>Front‑loads quantified impact for both humans and machines</li>
-            <li>Role‑specific tailoring for true “one‑click relevance”</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Hidden Netlify Forms for each service type -->
+  <form name="candlmatch-jobs" method="POST" data-netlify="true" style="display: none;">
+    <input type="hidden" name="form-name" value="candlmatch-jobs" />
+    <input type="hidden" name="service-type" value="Job Matching" />
+    <input type="text" name="email" />
+    <input type="text" name="current_title" />
+    <input type="text" name="years_experience" />
+    <input type="text" name="target_roles" />
+    <input type="text" name="salary_min" />
+    <input type="text" name="salary_max" />
+    <input type="text" name="location_type" />
+    <input type="text" name="location_area" />
+    <input type="text" name="phone" />
+    <input type="text" name="selected_tier" />
+    <input type="text" name="ancillary_services" />
+    <input type="text" name="total_price" />
+    <input type="file" name="resume" />
+  </form>
 
-  <!-- Deliverables -->
-  <section class="service-section alt-bg">
-    <div class="container">
-      <div class="service-content">
-        <div class="service-info">
-          <div class="service-icon-large"><i class="fas fa-box-open"></i></div>
-          <h2 class="service-title">What you get</h2>
-          <ul class="offering-features">
-            <li>ATS‑optimized master resume (DOCX/PDF)</li>
-            <li>Role‑specific resume variants (as needed)</li>
-            <li>SequelMatch AI Report with curated roles, fit rationale, and outreach plan</li>
-            <li>Optional: LinkedIn profile refresh recommendations</li>
-          </ul>
-          <div class="services-cta">
-            <a href="contact.html" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Start Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <form name="candlmatch-scholarships" method="POST" data-netlify="true" style="display: none;">
+    <input type="hidden" name="form-name" value="candlmatch-scholarships" />
+    <input type="hidden" name="service-type" value="Educational Scholarships" />
+    <input type="text" name="email" />
+    <input type="text" name="education_level" />
+    <input type="text" name="major" />
+    <input type="text" name="gpa" />
+    <input type="text" name="target_degree" />
+    <input type="text" name="financial_need" />
+    <input type="text" name="geographic_pref" />
+    <input type="text" name="special_categories" />
+    <input type="text" name="achievements" />
+    <input type="text" name="extracurriculars" />
+    <input type="text" name="phone" />
+    <input type="text" name="selected_tier" />
+    <input type="text" name="ancillary_services" />
+    <input type="text" name="total_price" />
+    <input type="file" name="resume" />
+  </form>
 
-  <!-- Pricing -->
-  <section class="service-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Pricing</h2>
-        <p class="section-subtitle">Clear, simple options designed to move you forward fast</p>
-      </div>
-      <div class="service-content">
-        <div class="service-info">
-          <ul class="offering-features">
-            <li><strong>Resume Rewrite</strong> — $69</li>
-            <li><strong>Job Match Report</strong> — $99</li>
-            <li><strong>Resume + Job Match Bundle</strong> — $149</li>
-          </ul>
+  <form name="candlmatch-educational-grants" method="POST" data-netlify="true" style="display: none;">
+    <input type="hidden" name="form-name" value="candlmatch-educational-grants" />
+    <input type="hidden" name="service-type" value="Educational Grants" />
+    <input type="text" name="email" />
+    <input type="text" name="institution" />
+    <input type="text" name="position" />
+    <input type="text" name="research_area" />
+    <input type="text" name="grant_purpose" />
+    <input type="text" name="funding_needed" />
+    <input type="text" name="project_timeline" />
+    <input type="text" name="previous_grants" />
+    <input type="text" name="publications" />
+    <input type="text" name="phone" />
+    <input type="text" name="selected_tier" />
+    <input type="text" name="ancillary_services" />
+    <input type="text" name="total_price" />
+    <input type="file" name="cv" />
+  </form>
 
-          <h3 class="service-title" style="margin-top:1rem">Tailored Resumes for Specific Applications</h3>
-          <ul class="offering-features">
-            <li>With purchase of any item above: <strong>$24.99 each</strong> or <strong>5 for $99</strong></li>
-            <li>Without purchase above: <strong>$34.99 each</strong> or <strong>5 for $124.99</strong></li>
-          </ul>
+  <form name="candlmatch-business-grants" method="POST" data-netlify="true" style="display: none;">
+    <input type="hidden" name="form-name" value="candlmatch-business-grants" />
+    <input type="hidden" name="service-type" value="Business Grants" />
+    <input type="text" name="email" />
+    <input type="text" name="business_name" />
+    <input type="text" name="industry" />
+    <input type="text" name="business_stage" />
+    <input type="text" name="years_operating" />
+    <input type="text" name="annual_revenue" />
+    <input type="text" name="employees" />
+    <input type="text" name="ownership" />
+    <input type="text" name="grant_purpose" />
+    <input type="text" name="location" />
+    <input type="text" name="funding_needed" />
+    <input type="text" name="phone" />
+    <input type="text" name="selected_tier" />
+    <input type="text" name="ancillary_services" />
+    <input type="text" name="total_price" />
+    <input type="file" name="business_plan" />
+  </form>
 
-          <h3 class="service-title" style="margin-top:1rem">Interview Prep (Zoom)</h3>
-          <ul class="offering-features">
-            <li><strong>$79</strong> — 1:1 session with an advisor (minimum 20 years of experience in your field) to help you stick the landing at the interview</li>
-          </ul>
+  <form name="candlmatch-rfps" method="POST" data-netlify="true" style="display: none;">
+    <input type="hidden" name="form-name" value="candlmatch-rfps" />
+    <input type="hidden" name="service-type" value="Public Sector RFPs" />
+    <input type="text" name="email" />
+    <input type="text" name="naics_codes" />
+    <input type="text" name="gsa_schedule" />
+    <input type="text" name="certifications" />
+    <input type="text" name="past_performance" />
+    <input type="text" name="bonding_capacity" />
+    <input type="text" name="service_areas" />
+    <input type="text" name="contract_size" />
+    <input type="text" name="phone" />
+    <input type="text" name="selected_tier" />
+    <input type="text" name="ancillary_services" />
+    <input type="text" name="total_price" />
+    <input type="file" name="capability_statement" />
+  </form>
 
-          <div class="services-cta">
-            <a href="contact.html" class="btn btn-primary"><i class="fas fa-calendar-alt"></i> Get Started</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="section-header" style="margin-top:2rem">
-        <h3 class="section-title">Bonus</h3>
-        <p class="section-subtitle">Purchase of any product includes a free State of AI report for your industry/niche</p>
-      </div>
-      <div class="service-content">
-        <div class="service-info">
-          <ul class="offering-features">
-            <li><strong>State of AI Report</strong> — Free with any purchase, or <strong>$49.99</strong> if purchased by itself</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- SequelMatch AI Order Form -->
-  <section class="service-section alt-bg">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Get Started</h2>
-        <p class="section-subtitle">Place an order and upload your resume. We'll confirm within 48 hours. Once confirmed, you can pay securely on this website or via invoice — whichever you prefer.</p>
-      </div>
-
-      <form id="order-form" name="order-form" class="contact-form" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="hp_field">
-        <input type="hidden" name="form-name" value="order-form" />
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="firstName">First Name *</label>
-            <input type="text" id="firstName" name="firstName" required>
-          </div>
-          <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="Optional">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="service">Service *</label>
-            <select id="service" name="service" required>
-              <option value="">Select a service</option>
-              <option>Resume Rewrite — $69</option>
-              <option>Job Match Report — $99</option>
-              <option>Resume + Job Match Bundle — $149</option>
-              <option>Tailored Resume (with purchase) — $24.99 each</option>
-              <option>Tailored Resume (with purchase) — 5 for $99</option>
-              <option>Tailored Resume (no purchase) — $34.99 each</option>
-              <option>Tailored Resume (no purchase) — 5 for $124.99</option>
-              <option>Interview Prep (Zoom) — $79</option>
-              <option>State of AI Report (standalone) — $49.99</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <input type="text" name="hp_field" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;" />
-
-            <label for="industry">Industry / Niche</label>
-            <input type="text" id="industry" name="industry" placeholder="For your State of AI bonus report">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="resume">Upload Resume</label>
-            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
-            <small class="form-hint">PDF, DOC, or DOCX</small>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group full">
-            <label for="message">Notes / Targets *</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Share target roles, links, or context."></textarea>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit Order</button>
-            <p class="form-note">After confirmation, we'll send a payment link so you can pay either on this website or via invoice — your choice.</p>
-          </div>
-        </div>
-      </form>
-    </div>
-  </section>
-
+  <form name="candlmatch-board-seats" method="POST" data-netlify="true" style="display: none;">
+    <input type="hidden" name="form-name" value="candlmatch-board-seats" />
+    <input type="hidden" name="service-type" value="Board Director Seats" />
+    <input type="text" name="email" />
+    <input type="text" name="executive_experience" />
+    <input type="text" name="board_experience" />
+    <input type="text" name="industry_expertise" />
+    <input type="text" name="functional_expertise" />
+    <input type="text" name="board_preferences" />
+    <input type="text" name="compensation_pref" />
+    <input type="text" name="geographic_pref" />
+    <input type="text" name="diversity_focus" />
+    <input type="text" name="time_commitment" />
+    <input type="text" name="linkedin_url" />
+    <input type="text" name="phone" />
+    <input type="text" name="selected_tier" />
+    <input type="text" name="ancillary_services" />
+    <input type="text" name="total_price" />
+    <input type="file" name="board_bio" />
+  </form>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <div class="footer-logo"><i class="fas fa-lightbulb"></i>
-            <div class="logo-text"><span class="company-name">C&L Strategy</span><span class="tagline">Illuminating Solutions</span></div>
+          <div class="footer-logo">
+            <div class="logo-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="logo-text">
+              <span class="company-name">C&L Strategy</span>
+              <span class="tagline">Illuminating Solutions</span>
+            </div>
           </div>
           <p class="footer-description">Guiding careers with clarity, speed, and impact.</p>
         </div>
@@ -301,4 +380,3 @@
   <script src="js/main.js?v=20250927"></script>
 </body>
 </html>
-
