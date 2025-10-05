@@ -831,9 +831,9 @@ class CandlMatchForm {
     // Pricing data
     this.pricingTiers = {
       jobs: [
-        { name: "Basic Match", price: 297, features: ["Resume ATS optimization", "10-15 targeted job matches", "Basic industry report"], recommended: false },
-        { name: "Premium Match", price: 397, features: ["Everything in Basic", "20-25 targeted job matches", "Interview prep guide", "Application tracking template"], recommended: true },
-        { name: "Elite Match", price: 497, features: ["Everything in Premium", "30+ targeted job matches", "Salary negotiation guide", "LinkedIn profile optimization", "Premium industry AI report"], recommended: false }
+        { name: "Job Match Report", price: 99, features: ["Targeted list of high-fit roles", "Per-role alignment notes", "Application strategy guide"], recommended: false },
+        { name: "Resume Redo (ATS Optimized)", price: 79, features: ["ATS-optimized master resume", "Keyword optimization", "Human readability focus"], recommended: false },
+        { name: "Complete Bundle", price: 149, features: ["Everything in Job Match Report", "Everything in Resume Redo", "Role-specific resume variants", "LinkedIn profile recommendations"], recommended: true }
       ],
       scholarships: [
         { name: "Basic Match", price: 147, features: ["15-20 scholarship opportunities", "Basic application timeline"], recommended: false },
@@ -1265,22 +1265,37 @@ class CandlMatchForm {
     
     try {
       // Get the appropriate Netlify form based on service type
-      const formName = `candlmatch-${this.appState.selectedService.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+      let formName = `candlmatch-${this.appState.selectedService}`;
+      if (this.appState.selectedService === 'educationalGrants') {
+        formName = 'candlmatch-educational-grants';
+      } else if (this.appState.selectedService === 'businessGrants') {
+        formName = 'candlmatch-business-grants';
+      } else if (this.appState.selectedService === 'boardSeats') {
+        formName = 'candlmatch-board-seats';
+      }
+      
       const netlifyForm = document.querySelector(`form[name="${formName}"]`);
       
       if (!netlifyForm) {
-        throw new Error('Form not found');
+        throw new Error(`Form not found: ${formName}`);
       }
 
-      // Populate the hidden Netlify form with our data
-      const formData = new FormData();
+      // Create FormData and populate with our collected data
+      const formData = new FormData(netlifyForm);
+      
+      // Clear existing data and populate with our data
+      for (let [key, value] of formData.entries()) {
+        formData.delete(key);
+      }
+      
+      // Add form identification
       formData.append('form-name', formName);
       formData.append('service-type', this.getServiceDisplayName(this.appState.selectedService));
       formData.append('selected_tier', JSON.stringify(this.appState.selectedTier));
       formData.append('ancillary_services', JSON.stringify(this.appState.selectedAncillary));
       formData.append('total_price', this.appState.totalPrice);
 
-      // Add all form data
+      // Add all collected form data
       for (let [key, value] of Object.entries(this.appState.formData)) {
         if (Array.isArray(value)) {
           formData.append(key, value.join(', '));
@@ -1296,14 +1311,14 @@ class CandlMatchForm {
         formData.append(fileFieldName, fileInput.files[0]);
       }
 
-      // Submit to Netlify
-      const response = await fetch('/', {
+      // Submit to Netlify using the form's action or default
+      const response = await fetch(netlifyForm.action || '/', {
         method: 'POST',
         body: formData
       });
 
       if (!response.ok) {
-        throw new Error('Submission failed');
+        throw new Error(`Submission failed: ${response.status}`);
       }
 
       // Generate order ID
