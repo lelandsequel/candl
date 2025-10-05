@@ -836,63 +836,63 @@ class CandlMatchForm {
         { name: "Complete Bundle", price: 149, features: ["Everything in Job Match Report", "Everything in Resume Redo", "Role-specific resume variants", "LinkedIn profile recommendations"], recommended: true }
       ],
       scholarships: [
-        { name: "Basic Match", price: 147, features: ["15-20 scholarship opportunities", "Basic application timeline"], recommended: false },
-        { name: "Premium Match", price: 247, features: ["30-40 scholarship opportunities", "Application strategy guide", "Deadline reminder system"], recommended: true },
-        { name: "Elite Match", price: 347, features: ["50+ scholarship opportunities", "Essay review template", "Application timeline & calendar", "Scholarship interview tips"], recommended: false }
+        { name: "Basic Match", price: 103, description: "Perfect for high school seniors and early undergrads", features: ["15-20 curated scholarship opportunities", "Basic application timeline and deadlines", "Eligibility requirements breakdown", "Application submission checklist"], recommended: false },
+        { name: "Premium Match", price: 173, description: "Comprehensive support for serious scholarship seekers", features: ["30-40 targeted scholarship opportunities", "Detailed application strategy guide", "Automated deadline reminder system", "Essay prompts and requirements analysis", "Merit vs need-based categorization"], recommended: true },
+        { name: "Elite Match", price: 243, description: "Maximum opportunities with premium support", features: ["50+ scholarship opportunities across all categories", "Professional essay review template and guidelines", "Complete application timeline & calendar system", "Scholarship interview preparation tips", "Follow-up and renewal opportunity tracking"], recommended: false }
       ],
       educationalGrants: [
-        { name: "Foundation Match", price: 297, description: "Grants up to $50K", features: ["10-15 foundation grant opportunities", "Grant writing resources"], recommended: false },
-        { name: "Research Match", price: 447, description: "Grants $50K-$250K", features: ["15-20 research grant opportunities", "Budget template", "Timeline planning guide"], recommended: true },
-        { name: "Major Grants Match", price: 697, description: "Grants $250K+", features: ["20+ major grant opportunities", "Preliminary review call", "Grant strategy consultation"], recommended: false }
+        { name: "Foundation Match", price: 208, description: "Ideal for smaller research projects and pilot studies", features: ["10-15 foundation grant opportunities up to $50K", "Grant writing resource library and templates", "Foundation research and contact information", "Application requirement analysis"], recommended: false },
+        { name: "Research Match", price: 313, description: "Perfect for established researchers seeking substantial funding", features: ["15-20 research grant opportunities ($50K-$250K)", "Professional budget development template", "Comprehensive timeline planning guide", "Peer review and collaboration opportunities", "Grant compliance and reporting requirements"], recommended: true },
+        { name: "Major Grants Match", price: 488, description: "Elite support for transformational research funding", features: ["20+ major grant opportunities ($250K+)", "30-minute preliminary strategy review call", "Personalized grant strategy consultation", "Advanced proposal development guidance", "Post-award management resources"], recommended: false }
       ],
       businessGrants: [
-        { name: "Small Business Match", price: 347, description: "Grants up to $100K", features: ["15-20 small business grant opportunities", "Application checklist"], recommended: false },
-        { name: "Growth Match", price: 597, description: "Grants $100K-$500K", features: ["20-25 growth grant opportunities", "Compliance checklist", "Financial documentation guide"], recommended: true },
-        { name: "Enterprise Match", price: 897, description: "Grants $500K+", features: ["25+ enterprise grant opportunities", "Strategy consultation (30 min)", "Priority support"], recommended: false }
+        { name: "Small Business Match", price: 243, description: "Designed for startups and small businesses seeking growth capital", features: ["15-20 small business grant opportunities up to $100K", "Complete application checklist and requirements", "Eligibility assessment and qualification guide", "Industry-specific grant identification"], recommended: false },
+        { name: "Growth Match", price: 418, description: "Comprehensive support for expanding businesses", features: ["20-25 growth-focused grant opportunities ($100K-$500K)", "Detailed compliance checklist and requirements", "Financial documentation preparation guide", "Application timeline and milestone tracking", "Post-award compliance support"], recommended: true },
+        { name: "Enterprise Match", price: 628, description: "Premium service for large-scale business transformation", features: ["25+ enterprise grant opportunities ($500K+)", "30-minute strategy consultation with grant specialist", "Priority application support and review", "Advanced compliance and reporting guidance", "Ongoing relationship management"], recommended: false }
       ],
       rfps: [
-        { name: "Small Contract Match", price: 397, description: "RFPs up to $250K", features: ["10-15 RFP opportunities", "Basic capability statement tips"], recommended: false },
-        { name: "Mid-Tier Match", price: 697, description: "RFPs $250K-$5M", features: ["15-20 RFP opportunities", "SAM.gov optimization tips", "Compliance checklist"], recommended: true },
-        { name: "Large Contract Match", price: 1247, description: "RFPs $5M+", features: ["20+ large RFP opportunities", "Capture strategy session (45 min)", "Past performance template"], recommended: false }
+        { name: "Small Contract Match", price: 278, description: "Entry-level government contracting opportunities", features: ["10-15 RFP opportunities up to $250K", "Basic capability statement development tips", "SAM.gov registration guidance", "Small business set-aside identification"], recommended: false },
+        { name: "Mid-Tier Match", price: 488, description: "Substantial contract opportunities for growing businesses", features: ["15-20 RFP opportunities ($250K-$5M)", "Advanced SAM.gov profile optimization", "Comprehensive compliance checklist", "Past performance documentation guidance", "Teaming partner identification"], recommended: true },
+        { name: "Large Contract Match", price: 873, description: "Major government contracts for established contractors", features: ["20+ large RFP opportunities ($5M+)", "45-minute capture strategy session", "Professional past performance template", "Advanced proposal development support", "Prime contractor positioning strategy"], recommended: false }
       ],
       boardSeats: [
-        { name: "Advisory Match", price: 497, description: "Advisory & startup boards", features: ["5-10 advisory board opportunities", "Board service guide"], recommended: false },
-        { name: "Director Match", price: 897, description: "Paid corporate boards", features: ["10-15 board director opportunities", "Interview preparation guide", "Board compensation insights"], recommended: true },
-        { name: "Elite Board Match", price: 1697, description: "Public company boards", features: ["15+ premium board opportunities", "Personal branding review (30 min)", "LinkedIn profile optimization", "Board readiness assessment"], recommended: false }
+        { name: "Advisory Match", price: 348, description: "Entry into advisory and startup board positions", features: ["5-10 advisory board opportunities", "Comprehensive board service guide", "Advisory compensation benchmarking", "Board readiness assessment"], recommended: false },
+        { name: "Director Match", price: 628, description: "Paid corporate board positions for experienced executives", features: ["10-15 corporate board director opportunities", "Professional interview preparation guide", "Board compensation insights and benchmarking", "Director liability and fiduciary duty briefing", "Board committee assignment guidance"], recommended: true },
+        { name: "Elite Board Match", price: 1188, description: "Premium public company and high-profile board positions", features: ["15+ premium board opportunities (public companies)", "30-minute personal branding review session", "Professional LinkedIn profile optimization", "Comprehensive board readiness assessment", "Executive search firm relationship building", "Ongoing board opportunity pipeline"], recommended: false }
       ]
     };
 
     this.ancillaryServices = {
       scholarships: [
-        { id: 'essay_coaching', name: 'Essay Editing/Coaching', price: 150 },
-        { id: 'app_review', name: 'Application Package Review', price: 147 },
-        { id: 'interview_prep', name: 'Interview Prep', price: 127 }
+        { id: 'essay_coaching', name: 'Professional Essay Editing & Coaching', price: 105, description: 'Expert review and coaching for scholarship essays with personalized feedback and revision guidance' },
+        { id: 'app_review', name: 'Complete Application Package Review', price: 103, description: 'Comprehensive review of your entire scholarship application portfolio for maximum impact' },
+        { id: 'interview_prep', name: 'Scholarship Interview Preparation', price: 89, description: 'One-on-one coaching for scholarship interviews with practice questions and presentation tips' }
       ],
       educationalGrants: [
-        { id: 'proposal_review', name: 'Grant Proposal Review', price: 297 },
-        { id: 'budget_dev', name: 'Budget Development', price: 197 },
-        { id: 'monthly_alerts', name: 'Monthly Grant Alerts', price: 67, recurring: 'monthly' }
+        { id: 'proposal_review', name: 'Grant Proposal Professional Review', price: 208, description: 'Expert review of your grant proposal with detailed feedback and improvement recommendations' },
+        { id: 'budget_dev', name: 'Professional Budget Development', price: 138, description: 'Custom budget creation and justification for your grant proposal with compliance guidance' },
+        { id: 'monthly_alerts', name: 'Monthly Grant Opportunity Alerts', price: 47, recurring: 'monthly', description: 'Ongoing monthly alerts for new grant opportunities matching your research profile' }
       ],
       businessGrants: [
-        { id: 'app_package', name: 'Application Package Development', price: 397 },
-        { id: 'compliance', name: 'Compliance Review', price: 297 },
-        { id: 'quarterly_monitoring', name: 'Quarterly Monitoring', price: 137, recurring: 'quarterly' }
+        { id: 'app_package', name: 'Complete Application Package Development', price: 278, description: 'Full application package creation including narratives, budgets, and supporting documentation' },
+        { id: 'compliance', name: 'Regulatory Compliance Review', price: 208, description: 'Comprehensive compliance review ensuring all regulatory requirements are met' },
+        { id: 'quarterly_monitoring', name: 'Quarterly Grant Monitoring Service', price: 96, recurring: 'quarterly', description: 'Ongoing monitoring for new grant opportunities and application deadline tracking' }
       ],
       rfps: [
-        { id: 'capability_stmt', name: 'Capability Statement Development', price: 347 },
-        { id: 'rfp_review', name: 'RFP Response Review', price: 547 },
-        { id: 'teaming', name: 'Teaming Partner Matching', price: 297 },
-        { id: 'monthly_opps', name: 'Monthly Opportunity Alerts', price: 97, recurring: 'monthly' }
+        { id: 'capability_stmt', name: 'Professional Capability Statement Development', price: 243, description: 'Custom capability statement creation highlighting your core competencies and past performance' },
+        { id: 'rfp_review', name: 'RFP Response Professional Review', price: 383, description: 'Expert review of your RFP response with compliance check and win probability assessment' },
+        { id: 'teaming', name: 'Strategic Teaming Partner Matching', price: 208, description: 'Identification and introduction to potential teaming partners for larger contract opportunities' },
+        { id: 'monthly_opps', name: 'Monthly RFP Opportunity Alerts', price: 68, recurring: 'monthly', description: 'Curated monthly alerts for new RFP opportunities matching your NAICS codes and capabilities' }
       ],
       boardSeats: [
-        { id: 'bio_opt', name: 'Board Bio Optimization', price: 197 },
-        { id: 'interview_coach', name: 'Board Interview Coaching', price: 347 },
-        { id: 'linkedin_audit', name: 'LinkedIn Executive Audit', price: 297 },
-        { id: 'quarterly_insights', name: 'Quarterly Board Insights', price: 137, recurring: 'quarterly' }
+        { id: 'bio_opt', name: 'Executive Board Bio Optimization', price: 138, description: 'Professional optimization of your board biography highlighting relevant experience and expertise' },
+        { id: 'interview_coach', name: 'Board Interview Coaching Session', price: 243, description: 'Comprehensive board interview preparation with mock interviews and presentation coaching' },
+        { id: 'linkedin_audit', name: 'LinkedIn Executive Profile Audit', price: 208, description: 'Complete LinkedIn profile optimization for board readiness and executive positioning' },
+        { id: 'quarterly_insights', name: 'Quarterly Board Market Insights', price: 96, recurring: 'quarterly', description: 'Regular market intelligence on board opportunities and compensation trends' }
       ],
       universal: [
-        { id: 'rush', name: 'Rush Processing (48hr)', price: 200 },
-        { id: 'premium_report', name: 'Premium AI Industry Report', price: 97 }
+        { id: 'rush', name: 'Rush Processing (48-hour delivery)', price: 140, description: 'Expedited processing with guaranteed 48-hour delivery of your complete match results' },
+        { id: 'premium_report', name: 'Premium AI Industry Analysis Report', price: 68, description: 'Comprehensive AI-powered industry analysis and market positioning report for your sector' }
       ]
     };
 
