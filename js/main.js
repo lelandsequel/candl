@@ -1311,10 +1311,11 @@ class CandlMatchForm {
         formData.append(fileFieldName, fileInput.files[0]);
       }
 
-      // Submit to Netlify using the form's action or default
-      const response = await fetch(netlifyForm.action || '/', {
+      // Submit to Netlify Forms
+      const response = await fetch('/', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
       });
 
       if (!response.ok) {
