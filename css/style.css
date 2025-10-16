@@ -4139,8 +4139,8 @@ p {
 .candlmatch-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
-  background: var(--off-white);
+  padding: 40px 20px;
+  background: var(--white);
   min-height: 100vh;
 }
 
