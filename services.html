@@ -4,17 +4,209 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services - C&L Strategy</title>
-    <meta name="description" content="Comprehensive business consulting services including digital consulting, accounting & finance, and process improvement. Illuminating your path to success.">
+    <meta name="description" content="Strategic consulting services including digital transformation, financial optimization, process improvement, and real estate development.">
     
     <!-- CSS Dependencies -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css?v=20250927">
     
-    <!-- Favicon - Candle Icon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='25' rx='8' ry='12' fill='%23ff6b35'/%3E%3Crect x='42' y='35' width='16' height='40' rx='2' fill='%23d4af37'/%3E%3Crect x='40' y='75' width='20' height='8' rx='4' fill='%23b8860b'/%3E%3C/svg%3E">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230EA5E9'/%3E%3Cstop offset='100%25' stop-color='%238B5CF6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='20' y='20' width='60' height='60' rx='12' fill='url(%23grad)'/%3E%3Ctext x='50' y='65' font-family='Arial,sans-serif' font-size='45' font-weight='bold' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+    
+    <style>
+        /* Interactive Services Styles */
+        .services-interactive {
+            padding: 80px 0 100px;
+            background: var(--off-white);
+        }
+
+        .service-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .service-card-badge {
+            background: var(--white);
+            padding: 32px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--light-gray);
+            position: relative;
+        }
+
+        .service-card-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bright-blue);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card-badge:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-color: var(--bright-blue);
+        }
+
+        .service-card-badge.active {
+            border-color: var(--bright-blue);
+            background: var(--white);
+        }
+
+        .service-card-badge.active::before {
+            transform: scaleX(1);
+        }
+
+        .badge-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--bright-blue);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card-badge:hover .badge-icon,
+        .service-card-badge.active .badge-icon {
+            background: var(--accent-blue);
+        }
+
+        .badge-icon i {
+            font-size: 1.75rem;
+            color: var(--white);
+        }
+
+        .service-card-badge h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--black);
+            margin: 0;
+        }
+
+        .service-content-area {
+            background: var(--white);
+            padding: 60px;
+            border: 1px solid var(--light-gray);
+            min-height: 600px;
+        }
+
+        .service-content-panel {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .service-content-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-detail-header {
+            margin-bottom: 48px;
+        }
+
+        .service-detail-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .service-detail-header p {
+            font-size: 1.125rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .offering-item {
+            padding: 24px;
+            background: var(--off-white);
+            border-left: 4px solid var(--bright-blue);
+        }
+
+        .offering-item h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .offering-item p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .offering-item ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .offering-item ul li {
+            font-size: 0.9375rem;
+            color: var(--dark-gray);
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .offering-item ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--bright-blue);
+            font-weight: 700;
+        }
+
+        @media (max-width: 1024px) {
+            .service-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .service-content-area {
+                padding: 32px 24px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -23,15 +215,11 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <div class="logo-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor" class="candle-icon">
-                        <ellipse cx="12" cy="6" rx="2" ry="3" fill="#ff6b35"/>
-                        <rect x="9" y="8" width="6" height="12" rx="1" fill="currentColor"/>
-                        <rect x="8" y="20" width="8" height="2" rx="1" fill="#b8860b"/>
-                    </svg>
+                    <i class="fas fa-chess-knight"></i>
                 </div>
                 <div class="logo-text">
                     <span class="company-name">C&L Strategy</span>
-                    <span class="tagline">Illuminating Solutions</span>
+                    <span class="tagline">Strategic Execution</span>
                 </div>
             </div>
             
@@ -58,466 +246,326 @@
             <div class="header-content">
                 <h1 class="page-title">Our Services</h1>
                 <p class="page-subtitle">
-                    Illuminating pathways to success through comprehensive business consulting
+                    Strategic consulting services that drive measurable results
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Digital Consulting Section -->
-    <section id="digital" class="service-section">
+    <!-- Interactive Services Section -->
+    <section class="services-interactive">
         <div class="container">
-            <div class="service-content">
-                <div class="service-info">
-                    <div class="service-icon-large">
+            <!-- Service Cards/Badges -->
+            <div class="service-cards-grid">
+                <div class="service-card-badge active" data-service="digital" onclick="switchService('digital')">
+                    <div class="badge-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h2 class="service-title">Digital Consulting</h2>
-                    <p class="service-description">
-                        Brighten your digital future with comprehensive technology solutions that 
-                        enlighten operations and ignite innovation. We guide businesses through 
-                        the complex digital landscape with strategic clarity and technical expertise.
-                    </p>
-                    
-                    <div class="service-offerings">
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Website Development & SEO/AEO</h4>
-                                <p>Custom website design and development with pioneering AEO (Answer Engine Optimization) that illuminates your brand and dominates search results. We're AEO pioneers leading the industry.</p>
-                                <ul class="offering-features">
-                                    <li>Custom responsive web design</li>
-                                    <li>E-commerce platform development</li>
-                                    <li>SEO & AEO (Answer Engine Optimization)</li>
-                                    <li>Performance optimization & analytics</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Custom App Creation & Development</h4>
-                                <p>Transform your business ideas into powerful mobile and web applications. From concept to deployment, we create custom applications that streamline operations, enhance customer experience, and drive business growth.</p>
-                                <ul class="offering-features">
-                                    <li>Native mobile app development (iOS/Android)</li>
-                                    <li>Progressive web applications (PWA)</li>
-                                    <li>Custom business software solutions</li>
-                                    <li>API development and integration</li>
-                                    <li>App store deployment and optimization</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>AI Implementation & Strategy</h4>
-                                <p>Harness the power of artificial intelligence to automate processes, enhance decision-making, and gain competitive advantages in your market.</p>
-                                <ul class="offering-features">
-                                    <li>AI strategy development</li>
-                                    <li>Process automation solutions</li>
-                                    <li>Machine learning integration</li>
-                                    <li>Chatbot and virtual assistant deployment</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-presentation"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Pitch Deck Creation</h4>
-                                <p>Compelling presentations that illuminate your vision and secure investment. Professional design and storytelling that captivates investors and stakeholders.</p>
-                                <ul class="offering-features">
-                                    <li>Investor pitch deck design</li>
-                                    <li>Sales presentation development</li>
-                                    <li>Data visualization and storytelling</li>
-                                    <li>Executive summary creation</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Cyber Security Audits</h4>
-                                <p>Comprehensive security assessments that illuminate vulnerabilities and fortify your digital assets against evolving threats.</p>
-                                <ul class="offering-features">
-                                    <li>Security vulnerability assessments</li>
-                                    <li>Compliance auditing (SOC 2, HIPAA, etc.)</li>
-                                    <li>Penetration testing</li>
-                                    <li>Security policy development</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <h3>Digital Consulting</h3>
                 </div>
-                
-                <div class="service-visual">
-                    <div class="digital-graphic">
-                        <div class="code-window">
-                            <div class="window-header">
-                                <div class="window-controls">
-                                    <span class="control red"></span>
-                                    <span class="control yellow"></span>
-                                    <span class="control green"></span>
-                                </div>
-                            </div>
-                            <div class="code-content">
-                                <div class="code-line">
-                                    <span class="keyword">function</span> <span class="function">illuminate</span>() {
-                                </div>
-                                <div class="code-line indent">
-                                    <span class="keyword">return</span> <span class="string">'success'</span>;
-                                </div>
-                                <div class="code-line">}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Business Accounting & Finance Section -->
-    <section id="finance" class="service-section alt-bg">
-        <div class="container">
-            <div class="service-content reverse">
-                <div class="service-visual">
-                    <div class="finance-graphic">
-                        <div class="chart-container">
-                            <div class="chart-bars">
-                                <div class="bar" style="height: 60%"></div>
-                                <div class="bar" style="height: 80%"></div>
-                                <div class="bar" style="height: 45%"></div>
-                                <div class="bar" style="height: 90%"></div>
-                                <div class="bar" style="height: 75%"></div>
-                            </div>
-                            <div class="chart-glow"></div>
-                        </div>
+                <div class="service-card-badge" data-service="finance" onclick="switchService('finance')">
+                    <div class="badge-icon">
+                        <i class="fas fa-chart-line"></i>
                     </div>
+                    <h3>Financial Services</h3>
                 </div>
-                
-                <div class="service-info">
-                    <div class="service-icon-large">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h2 class="service-title">Business Accounting & Finance</h2>
-                    <p class="service-description">
-                        Illuminate your financial landscape with both legacy and modern cloud-based 
-                        accounting solutions. We provide clarity in complex financial matters, 
-                        ERP implementations, and inventory management systems that light the path to sustainable profitability.
-                    </p>
-                    
-                    <div class="service-offerings">
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-file-invoice"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Legacy & Cloud-Based Accounting</h4>
-                                <p>Comprehensive accounting solutions spanning traditional systems and modern cloud platforms that provide clear insights into your business performance.</p>
-                                <ul class="offering-features">
-                                    <li>Legacy system integration & modernization</li>
-                                    <li>Cloud-based accounting implementation</li>
-                                    <li>Financial statement preparation</li>
-                                    <li>GAAP compliance & reporting</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-calculator"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Tax Planning & Compliance</h4>
-                                <p>Strategic tax planning and preparation services that minimize liability while ensuring full compliance with regulations.</p>
-                                <ul class="offering-features">
-                                    <li>Business tax preparation</li>
-                                    <li>Tax strategy optimization</li>
-                                    <li>Quarterly estimated payments</li>
-                                    <li>Multi-state tax compliance</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-coins"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Cash Flow Management</h4>
-                                <p>Optimize your cash flow with forecasting, budgeting, and working capital management strategies.</p>
-                                <ul class="offering-features">
-                                    <li>Cash flow forecasting</li>
-                                    <li>Budget development and monitoring</li>
-                                    <li>Working capital optimization</li>
-                                    <li>Accounts receivable management</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>ERP & Inventory Management</h4>
-                                <p>Comprehensive ERP implementation and inventory management systems that illuminate operational efficiency and resource optimization.</p>
-                                <ul class="offering-features">
-                                    <li>ERP system selection & implementation</li>
-                                    <li>Inventory management system design</li>
-                                    <li>Supply chain optimization</li>
-                                    <li>Integration with existing systems</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Process Improvement Section -->
-    <section id="process" class="service-section">
-        <div class="container">
-            <div class="service-content">
-                <div class="service-info">
-                    <div class="service-icon-large">
+                <div class="service-card-badge" data-service="process" onclick="switchService('process')">
+                    <div class="badge-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
-                    <h2 class="service-title">Process Improvement</h2>
-                    <p class="service-description">
-                        Shed light on inefficiencies and kindle operational excellence through 
-                        proven methodologies that streamline workflows and enhance performance. 
-                        We illuminate the path to optimized operations.
-                    </p>
-                    
-                    <div class="service-offerings">
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-sitemap"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Workflow Analysis & Optimization</h4>
-                                <p>Comprehensive analysis of your current processes to identify bottlenecks, redundancies, and optimization opportunities.</p>
-                                <ul class="offering-features">
-                                    <li>Process mapping and documentation</li>
-                                    <li>Bottleneck identification and resolution</li>
-                                    <li>Workflow redesign and optimization</li>
-                                    <li>Standard operating procedures (SOPs)</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-award"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Quality Management Systems</h4>
-                                <p>Implementation of quality management frameworks that ensure consistency, reduce errors, and improve customer satisfaction.</p>
-                                <ul class="offering-features">
-                                    <li>ISO certification support</li>
-                                    <li>Quality control procedures</li>
-                                    <li>Error reduction strategies</li>
-                                    <li>Continuous improvement programs</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-tachometer-alt"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Performance Metrics Development</h4>
-                                <p>Design and implement performance measurement systems that illuminate progress and drive accountability.</p>
-                                <ul class="offering-features">
-                                    <li>KPI framework development</li>
-                                    <li>Performance dashboard creation</li>
-                                    <li>Balanced scorecard implementation</li>
-                                    <li>Regular performance reviews</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-exchange-alt"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Change Management Support</h4>
-                                <p>Guide your organization through process changes with structured change management that ensures adoption and success.</p>
-                                <ul class="offering-features">
-                                    <li>Change readiness assessments</li>
-                                    <li>Communication planning</li>
-                                    <li>Training program development</li>
-                                    <li>Adoption tracking and support</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <h3>Process Improvement</h3>
                 </div>
-                
-                <div class="service-visual">
-                    <div class="process-graphic">
-                        <div class="process-flow">
-                            <div class="process-step">
-                                <div class="step-number">1</div>
-                                <div class="step-label">Analyze</div>
-                            </div>
-                            <div class="process-arrow">→</div>
-                            <div class="process-step">
-                                <div class="step-number">2</div>
-                                <div class="step-label">Optimize</div>
-                            </div>
-                            <div class="process-arrow">→</div>
-                            <div class="process-step">
-                                <div class="step-number">3</div>
-                                <div class="step-label">Implement</div>
-                            </div>
-                            <div class="process-arrow">→</div>
-                            <div class="process-step">
-                                <div class="step-number">4</div>
-                                <div class="step-label">Monitor</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Real Estate & Business Development Section -->
-    <section id="realestate" class="service-section alt-bg">
-        <div class="container">
-            <div class="service-content">
-                <div class="service-info">
-                    <div class="service-icon-large">
+                <div class="service-card-badge" data-service="realestate" onclick="switchService('realestate')">
+                    <div class="badge-icon">
                         <i class="fas fa-building"></i>
                     </div>
-                    <h2 class="service-title">Real Estate & Business Development</h2>
-                    <p class="service-description">
-                        Illuminate opportunities in real estate markets and business expansion 
-                        with comprehensive project management, licensed expertise, and strategic development planning 
-                        that lights the path to property and business success.
-                    </p>
-                    
-                    <div class="service-offerings">
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Licensed Real Estate Services</h4>
-                                <p>Full-service real estate expertise with licensed agent representation for all your property needs, from acquisition to disposition.</p>
-                                <ul class="offering-features">
-                                    <li>Licensed real estate agent services</li>
-                                    <li>Property acquisition & disposition</li>
-                                    <li>Market analysis & valuation</li>
-                                    <li>Investment property consultation</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Strategic Property Location</h4>
-                                <p>Expert property location services that identify optimal sites for your business or investment goals through strategic market analysis.</p>
-                                <ul class="offering-features">
-                                    <li>Site selection & feasibility studies</li>
-                                    <li>Demographic and market analysis</li>
-                                    <li>Zoning and regulatory compliance</li>
-                                    <li>Location optimization strategies</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Turnkey Property Restorations</h4>
-                                <p>Complete property restoration management from concept to completion, maximizing value and minimizing hassle through comprehensive project oversight.</p>
-                                <ul class="offering-features">
-                                    <li>Complete project management</li>
-                                    <li>Contractor coordination & oversight</li>
-                                    <li>Budget and timeline management</li>
-                                    <li>Quality control & final inspection</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="offering">
-                            <div class="offering-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <div class="offering-content">
-                                <h4>Business Development Planning</h4>
-                                <p>Strategic business development services that illuminate growth opportunities and create actionable plans for expansion and market penetration.</p>
-                                <ul class="offering-features">
-                                    <li>Business expansion planning</li>
-                                    <li>Market entry strategies</li>
-                                    <li>Partnership development</li>
-                                    <li>Growth opportunity analysis</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <h3>Real Estate</h3>
                 </div>
-                
-                <div class="service-visual">
-                    <div class="realestate-graphic">
-                        <div class="building-outline">
-                            <div class="building-floors">
-                                <div class="floor"></div>
-                                <div class="floor"></div>
-                                <div class="floor"></div>
-                                <div class="floor"></div>
-                            </div>
-                            <div class="building-glow"></div>
-                        </div>
+
+                <div class="service-card-badge" data-service="construction" onclick="switchService('construction')">
+                    <div class="badge-icon">
+                        <i class="fas fa-hard-hat"></i>
                     </div>
+                    <h3>Construction</h3>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="services-cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Illuminate Your Business Potential?</h2>
-                <p>
-                    Let's discuss how C&L Strategy can light the way to your success. 
-                    Our comprehensive consulting services are designed to transform challenges into opportunities.
-                </p>
-                <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary">
-                        <i class="fas fa-calendar-alt"></i>
-                        Schedule Free Consultation
-                    </a>
-                    <a href="about.html" class="btn btn-secondary">
-                        <i class="fas fa-users"></i>
-                        Meet Our Team
-                    </a>
+            <!-- Service Content Area -->
+            <div class="service-content-area">
+                
+                <!-- Digital Consulting Content -->
+                <div id="digital-content" class="service-content-panel active">
+                    <div class="service-detail-header">
+                        <h2>Digital Consulting</h2>
+                        <p>Comprehensive technology solutions that drive digital transformation and operational excellence. We guide businesses through the complex digital landscape with strategic clarity and technical expertise.</p>
+                    </div>
+
+                    <div class="offerings-grid">
+                        <div class="offering-item">
+                            <h4>Website Development & SEO/AEO</h4>
+                            <p>Custom website design and development with pioneering AEO (Answer Engine Optimization) that elevates your brand and dominates search results.</p>
+                            <ul>
+                                <li>Custom responsive web design</li>
+                                <li>E-commerce platform development</li>
+                                <li>SEO & AEO (Answer Engine Optimization)</li>
+                                <li>Performance optimization & analytics</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Custom App Creation & Development</h4>
+                            <p>Transform your business ideas into powerful mobile and web applications that streamline operations and enhance customer experience.</p>
+                            <ul>
+                                <li>Native mobile app development (iOS/Android)</li>
+                                <li>Progressive web applications (PWA)</li>
+                                <li>Custom business software solutions</li>
+                                <li>API development and integration</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>AI Implementation & Strategy</h4>
+                            <p>Harness the power of artificial intelligence to automate processes, enhance decision-making, and gain competitive advantages.</p>
+                            <ul>
+                                <li>AI strategy development</li>
+                                <li>Process automation solutions</li>
+                                <li>Machine learning integration</li>
+                                <li>Chatbot and virtual assistant deployment</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Cyber Security Audits</h4>
+                            <p>Comprehensive security assessments that identify vulnerabilities and fortify your digital assets against evolving threats.</p>
+                            <ul>
+                                <li>Security vulnerability assessments</li>
+                                <li>Compliance auditing (SOC 2, HIPAA, etc.)</li>
+                                <li>Penetration testing</li>
+                                <li>Security policy development</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Financial Services Content -->
+                <div id="finance-content" class="service-content-panel">
+                    <div class="service-detail-header">
+                        <h2>Financial Services</h2>
+                        <p>Comprehensive accounting and financial solutions spanning legacy systems and modern cloud platforms. We provide clarity in complex financial matters and strategic guidance for sustainable profitability.</p>
+                    </div>
+
+                    <div class="offerings-grid">
+                        <div class="offering-item">
+                            <h4>Legacy & Cloud-Based Accounting</h4>
+                            <p>Comprehensive accounting solutions spanning traditional systems and modern cloud platforms that provide clear insights into your business performance.</p>
+                            <ul>
+                                <li>Legacy system integration & modernization</li>
+                                <li>Cloud-based accounting implementation</li>
+                                <li>Financial statement preparation</li>
+                                <li>GAAP compliance & reporting</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Tax Planning & Compliance</h4>
+                            <p>Strategic tax planning and preparation services that minimize liability while ensuring full compliance with regulations.</p>
+                            <ul>
+                                <li>Business tax preparation</li>
+                                <li>Tax strategy optimization</li>
+                                <li>Quarterly estimated payments</li>
+                                <li>Multi-state tax compliance</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Cash Flow Management</h4>
+                            <p>Optimize your cash flow with forecasting, budgeting, and working capital management strategies.</p>
+                            <ul>
+                                <li>Cash flow forecasting</li>
+                                <li>Budget development and monitoring</li>
+                                <li>Working capital optimization</li>
+                                <li>Accounts receivable management</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>ERP & Inventory Management</h4>
+                            <p>Comprehensive ERP implementation and inventory management systems that drive operational efficiency and resource optimization.</p>
+                            <ul>
+                                <li>ERP system selection & implementation</li>
+                                <li>Inventory management system design</li>
+                                <li>Supply chain optimization</li>
+                                <li>Integration with existing systems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Process Improvement Content -->
+                <div id="process-content" class="service-content-panel">
+                    <div class="service-detail-header">
+                        <h2>Process Improvement</h2>
+                        <p>Data-driven process optimization that eliminates waste, reduces costs, and maximizes efficiency. We transform operations through proven methodologies and strategic implementation.</p>
+                    </div>
+
+                    <div class="offerings-grid">
+                        <div class="offering-item">
+                            <h4>Lean Six Sigma Implementation</h4>
+                            <p>Systematic approach to eliminating waste and reducing variation in your business processes.</p>
+                            <ul>
+                                <li>Process mapping and analysis</li>
+                                <li>Waste identification and elimination</li>
+                                <li>Quality control systems</li>
+                                <li>Continuous improvement culture</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Workflow Optimization</h4>
+                            <p>Streamline operations and boost productivity through intelligent workflow design and automation.</p>
+                            <ul>
+                                <li>Current state assessment</li>
+                                <li>Bottleneck identification</li>
+                                <li>Process redesign</li>
+                                <li>Automation opportunities</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Change Management</h4>
+                            <p>Guide your organization through transformation with structured change management strategies.</p>
+                            <ul>
+                                <li>Stakeholder engagement</li>
+                                <li>Communication planning</li>
+                                <li>Training and development</li>
+                                <li>Adoption measurement</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Performance Metrics & KPIs</h4>
+                            <p>Develop and implement meaningful metrics that drive accountability and results.</p>
+                            <ul>
+                                <li>KPI framework development</li>
+                                <li>Dashboard creation</li>
+                                <li>Performance tracking systems</li>
+                                <li>Data-driven decision making</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real Estate Content -->
+                <div id="realestate-content" class="service-content-panel">
+                    <div class="service-detail-header">
+                        <h2>Real Estate & Development</h2>
+                        <p>Strategic real estate consulting and development services that maximize value and minimize risk. From acquisition to disposition, we provide expert guidance throughout the entire real estate lifecycle.</p>
+                    </div>
+
+                    <div class="offerings-grid">
+                        <div class="offering-item">
+                            <h4>Property Acquisition & Due Diligence</h4>
+                            <p>Comprehensive analysis and strategic guidance for property acquisitions and investments.</p>
+                            <ul>
+                                <li>Market analysis and feasibility studies</li>
+                                <li>Financial modeling and valuation</li>
+                                <li>Due diligence coordination</li>
+                                <li>Negotiation support</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Development Project Management</h4>
+                            <p>End-to-end project management for commercial and residential development projects.</p>
+                            <ul>
+                                <li>Project planning and scheduling</li>
+                                <li>Budget management</li>
+                                <li>Contractor coordination</li>
+                                <li>Quality assurance</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Portfolio Optimization</h4>
+                            <p>Strategic portfolio management to maximize returns and minimize risk across your real estate holdings.</p>
+                            <ul>
+                                <li>Portfolio analysis and strategy</li>
+                                <li>Asset repositioning</li>
+                                <li>Disposition planning</li>
+                                <li>1031 exchange coordination</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Lease Negotiation & Management</h4>
+                            <p>Expert lease negotiation and management services for commercial and residential properties.</p>
+                            <ul>
+                                <li>Lease structure optimization</li>
+                                <li>Tenant representation</li>
+                                <li>Landlord representation</li>
+                                <li>Lease administration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Construction Content -->
+                <div id="construction-content" class="service-content-panel">
+                    <div class="service-detail-header">
+                        <h2>C&L Strategic Construction</h2>
+                        <p>Full turnkey residential construction services delivering quality craftsmanship and project excellence. From ground-up builds to demolition and cleanup, we handle every phase of your construction project.</p>
+                    </div>
+
+                    <div class="offerings-grid">
+                        <div class="offering-item">
+                            <h4>Residential Construction</h4>
+                            <p>Complete turnkey residential construction services from foundation to finish.</p>
+                            <ul>
+                                <li>New home construction</li>
+                                <li>Custom home builds</li>
+                                <li>Additions and expansions</li>
+                                <li>Complete project management</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Renovation & Remodeling</h4>
+                            <p>Transform existing spaces with expert renovation and remodeling services.</p>
+                            <ul>
+                                <li>Kitchen and bathroom remodels</li>
+                                <li>Whole-house renovations</li>
+                                <li>Interior and exterior updates</li>
+                                <li>Historic restoration</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Demolition Services</h4>
+                            <p>Safe, efficient demolition services for residential and commercial properties.</p>
+                            <ul>
+                                <li>Structural demolition</li>
+                                <li>Interior gut-outs</li>
+                                <li>Site preparation</li>
+                                <li>Permit coordination</li>
+                            </ul>
+                        </div>
+
+                        <div class="offering-item">
+                            <h4>Waste Removal & Cleanup</h4>
+                            <p>Comprehensive waste management and site cleanup services for construction projects.</p>
+                            <ul>
+                                <li>Construction debris removal</li>
+                                <li>Site cleanup and restoration</li>
+                                <li>Recycling and disposal</li>
+                                <li>Final cleaning services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -527,45 +575,29 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <div class="footer-logo">
-                        <div class="logo-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="candle-icon">
-                                <ellipse cx="12" cy="6" rx="2" ry="3" fill="#ff6b35"/>
-                                <rect x="9" y="8" width="6" height="12" rx="1" fill="currentColor"/>
-                                <rect x="8" y="20" width="8" height="2" rx="1" fill="#b8860b"/>
-                            </svg>
-                        </div>
-                        <div class="logo-text">
-                            <span class="company-name">C&L Strategy</span>
-                            <span class="tagline">Illuminating Solutions</span>
-                        </div>
-                    </div>
-                    <p class="footer-description">
-                        Guiding organizations through transformation with strategic clarity, 
-                        innovative solutions, and unwavering commitment to excellence.
-                    </p>
+                    <h4 class="footer-title">C&L Strategy</h4>
+                    <p>Strategic consulting services that drive measurable results.</p>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4 class="footer-title">Services</h4>
                     <ul class="footer-links">
-                        <li><a href="services.html#digital">Digital Consulting</a></li>
-                        <li><a href="services.html#finance">Business Accounting & Finance</a></li>
-                        <li><a href="services.html#process">Process Improvement</a></li>
-                        <li><a href="services.html#realestate">Real Estate & Development</a></li>
+                        <li><a href="#" onclick="switchService('digital'); return false;">Digital Consulting</a></li>
+                        <li><a href="#" onclick="switchService('finance'); return false;">Financial Services</a></li>
+                        <li><a href="#" onclick="switchService('process'); return false;">Process Improvement</a></li>
+                        <li><a href="#" onclick="switchService('realestate'); return false;">Real Estate</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4 class="footer-title">Company</h4>
                     <ul class="footer-links">
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="insights.html">Insights</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4 class="footer-title">Connect</h4>
                     <div class="social-links">
@@ -581,14 +613,35 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p>&copy; 2025 C&L Strategy. All rights reserved. | Illuminating business excellence since inception.</p>
+                <p>&copy; 2025 C&L Strategy. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script src="js/main.js?v=20250927"></script>
+    <script>
+        // Service switching functionality
+        function switchService(serviceId) {
+            // Remove active class from all badges
+            document.querySelectorAll('.service-card-badge').forEach(badge => {
+                badge.classList.remove('active');
+            });
+
+            // Add active class to clicked badge
+            document.querySelector(`[data-service="${serviceId}"]`).classList.add('active');
+
+            // Hide all content panels
+            document.querySelectorAll('.service-content-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            // Show selected content panel
+            document.getElementById(`${serviceId}-content`).classList.add('active');
+        }
+    </script>
 </body>
 </html>
+

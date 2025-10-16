@@ -807,7 +807,10 @@ p {
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
 }
 
 .insight-card.featured {
@@ -830,8 +833,10 @@ p {
 .insight-meta {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: var(--space-md);
+  gap: var(--space-md);
+  flex-wrap: wrap;
 }
 
 .insight-category {
@@ -841,6 +846,8 @@ p {
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .insight-card.featured .insight-category {
@@ -850,6 +857,8 @@ p {
 .insight-date {
   color: var(--medium-gray);
   font-size: 0.9rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .insight-title {
@@ -1163,9 +1172,7 @@ p {
 /* Page Header Styles */
 .page-header {
   padding: 120px var(--space-md) var(--space-2xl);
-  background:
-    radial-gradient(circle at 30% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-    var(--soft-cream);
+  background: var(--off-white);
   text-align: center;
 }
 
