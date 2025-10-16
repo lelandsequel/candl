@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css?v=20250927">
   
-  <!-- Favicon - Candle Icon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='25' rx='8' ry='12' fill='%23ff6b35'/%3E%3Crect x='42' y='35' width='16' height='40' rx='2' fill='%23d4af37'/%3E%3Crect x='40' y='75' width='20' height='8' rx='4' fill='%23b8860b'/%3E%3C/svg%3E">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230EA5E9'/%3E%3Cstop offset='100%25' stop-color='%238B5CF6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='20' y='20' width='60' height='60' rx='12' fill='url(%23grad)'/%3E%3Ctext x='50' y='65' font-family='Arial,sans-serif' font-size='45' font-weight='bold' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
 </head>
 <body>
   <!-- Navigation -->
@@ -22,30 +22,11 @@
     <div class="nav-container">
       <div class="nav-logo">
         <div class="logo-icon">
-          <svg viewBox="0 0 24 24" class="candle-icon">
-            <defs>
-              <linearGradient id="flame-nav" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#ff6b35"/>
-                <stop offset="100%" stop-color="#d4af37"/>
-              </linearGradient>
-              <linearGradient id="candle-nav" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f4d03f"/>
-                <stop offset="100%" stop-color="#b8860b"/>
-              </linearGradient>
-            </defs>
-            <!-- Stylized flame -->
-            <path d="M12 3 C10 5, 10 7, 12 8.5 C14 7, 14 5, 12 3 Z" fill="url(#flame-nav)"/>
-            <!-- Elegant candle body -->
-            <rect x="10.5" y="8.5" width="3" height="11" rx="1.5" fill="url(#candle-nav)"/>
-            <!-- Base -->
-            <ellipse cx="12" cy="19.5" rx="2" ry="0.8" fill="#b8860b"/>
-            <!-- Wick -->
-            <path d="M12 5 L12 6.5" stroke="#ff6b35" stroke-width="0.5" opacity="0.8"/>
-          </svg>
+          <i class="fas fa-chess-knight"></i>
         </div>
         <div class="logo-text">
           <span class="company-name">C&L Strategy</span>
-          <span class="tagline">Illuminating Solutions</span>
+          <span class="tagline">Strategic Execution</span>
         </div>
       </div>
       <div class="nav-menu" id="nav-menu">
@@ -76,47 +57,47 @@
         <div class="service-grid">
           
           <div class="service-card" onclick="selectService('jobs')">
-            <div class="service-icon">💼</div>
+            <div class="service-icon"><i class="fas fa-briefcase"></i></div>
             <h3>Job Matching</h3>
             <p>Beat the ATS and get matched to high-fit roles posted in the last few weeks. Our AI-optimized approach includes resume rewriting, targeted job matching, and application strategy guidance to accelerate your career advancement.</p>
             <span class="starting-price">Starting at $79</span>
             <button class="select-btn">Select Service →</button>
           </div>
-          
+
           <div class="service-card" onclick="selectService('scholarships')">
-            <div class="service-icon">🎓</div>
+            <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
             <h3>Educational Scholarships</h3>
             <p>Discover scholarship opportunities perfectly tailored to your academic profile, achievements, and financial needs. From merit-based awards to need-based funding, we match you with opportunities that align with your educational goals and background.</p>
             <span class="starting-price">Starting at $104.99</span>
             <button class="select-btn">Select Service →</button>
           </div>
-          
+
           <div class="service-card" onclick="selectService('educationalGrants')">
-            <div class="service-icon">🔬</div>
+            <div class="service-icon"><i class="fas fa-flask"></i></div>
             <h3>Educational Grants</h3>
             <p>Access research and academic funding opportunities from foundations, government agencies, and private organizations. Whether you're seeking pilot project funding or major research grants, we connect you with the right opportunities for your field and career stage.</p>
             <span class="starting-price">Starting at $209.99</span>
             <button class="select-btn">Select Service →</button>
           </div>
-          
+
           <div class="service-card" onclick="selectService('businessGrants')">
-            <div class="service-icon">🚀</div>
+            <div class="service-icon"><i class="fas fa-rocket"></i></div>
             <h3>Business Grants</h3>
             <p>Unlock funding opportunities for business growth, expansion, and innovation. From small business development grants to enterprise-level funding, we match you with government and private grant opportunities that align with your industry, stage, and growth objectives.</p>
             <span class="starting-price">Starting at $244.99</span>
             <button class="select-btn">Select Service →</button>
           </div>
-          
+
           <div class="service-card" onclick="selectService('rfps')">
-            <div class="service-icon">🏛️</div>
+            <div class="service-icon"><i class="fas fa-landmark"></i></div>
             <h3>Public Sector RFPs</h3>
             <p>Connect with government contract opportunities across federal, state, and local levels. We match your capabilities with active RFPs, help optimize your SAM.gov profile, and provide strategic guidance for successful government contracting.</p>
             <span class="starting-price">Starting at $279.99</span>
             <button class="select-btn">Select Service →</button>
           </div>
-          
+
           <div class="service-card" onclick="selectService('boardSeats')">
-            <div class="service-icon">👔</div>
+            <div class="service-icon"><i class="fas fa-user-tie"></i></div>
             <h3>Board Director Seats</h3>
             <p>Discover strategic board and advisory positions that leverage your executive experience and expertise. From startup advisory roles to public company board positions, we match you with opportunities that align with your background and compensation preferences.</p>
             <span class="starting-price">Starting at $349.99</span>
