@@ -757,7 +757,7 @@ p {
 .light-circle {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 102, 204, 0.2) 0%, transparent 70%);
   animation: expand 4s ease-in-out infinite;
 }
 
@@ -949,7 +949,7 @@ p {
 .article-header.category-oilgas {
   background:
     radial-gradient(circle at 30% 70%, rgba(255, 107, 53, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(0, 102, 204, 0.18) 0%, transparent 50%),
     var(--off-white);
 }
 .article-header.category-workforce {
@@ -1081,7 +1081,7 @@ p {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--bright-blue);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
 }
 
 .form-group textarea {
@@ -1407,7 +1407,7 @@ p {
   left: -10px;
   right: -10px;
   bottom: -10px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 102, 204, 0.2) 0%, transparent 70%);
   border-radius: 20px;
   z-index: -1;
 }
@@ -1487,7 +1487,7 @@ p {
   left: -15px;
   right: -15px;
   bottom: -15px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 102, 204, 0.3) 0%, transparent 70%);
   border-radius: 25px;
   z-index: -1;
 }
@@ -1714,7 +1714,7 @@ p {
 /* Individual Service Page Styles */
 .service-header {
   background:
-    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(0, 102, 204, 0.12) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
     var(--off-white);
 }
@@ -1938,7 +1938,7 @@ p {
 }
 
 .step {
-  background: rgba(212, 175, 55, 0.2);
+  background: rgba(0, 102, 204, 0.2);
   color: var(--navy-blue);
   padding: var(--space-xs) var(--space-md);
   border-radius: 20px;
@@ -2052,7 +2052,7 @@ p {
   justify-content: space-between;
   align-items: center;
   padding: var(--space-md);
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(0, 102, 204, 0.1);
   border-radius: 10px;
   border-left: 3px solid var(--bright-blue);
 }
@@ -2295,14 +2295,14 @@ p {
   align-items: center;
   text-align: center;
   padding: var(--space-lg);
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(0, 102, 204, 0.1);
   border-radius: 15px;
   transition: all var(--transition-normal);
 }
 
 .credential-item:hover {
   transform: translateY(-5px);
-  background: rgba(212, 175, 55, 0.2);
+  background: rgba(0, 102, 204, 0.2);
 }
 
 .credential-logo {
@@ -2626,14 +2626,14 @@ p {
   align-items: center;
   text-align: center;
   padding: var(--space-lg);
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(0, 102, 204, 0.1);
   border-radius: 15px;
   transition: all var(--transition-normal);
 }
 
 .advantage-item:hover {
   transform: translateY(-5px);
-  background: rgba(212, 175, 55, 0.2);
+  background: rgba(0, 102, 204, 0.2);
 }
 
 .advantage-icon {
@@ -2764,7 +2764,7 @@ p {
 .roi-display {
   text-align: center;
   padding: var(--space-lg);
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(0, 102, 204, 0.1);
   border-radius: 15px;
   border: 2px solid var(--bright-blue);
 }
@@ -3158,7 +3158,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(44, 44, 44, 0.8), rgba(212, 175, 55, 0.6));
+  background: linear-gradient(135deg, rgba(44, 44, 44, 0.8), rgba(0, 102, 204, 0.6));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3401,7 +3401,7 @@ p {
 }
 
 .metric-highlight {
-  background: rgba(212, 175, 55, 0.95);
+  background: rgba(0, 102, 204, 0.95);
   color: var(--charcoal);
   padding: var(--space-sm);
   border-radius: 10px;
@@ -3517,7 +3517,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(44, 44, 44, 0.7), rgba(212, 175, 55, 0.3));
+  background: linear-gradient(45deg, rgba(44, 44, 44, 0.7), rgba(0, 102, 204, 0.3));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3631,7 +3631,7 @@ p {
 }
 
 .result-metric {
-  background: rgba(212, 175, 55, 0.95);
+  background: rgba(0, 102, 204, 0.95);
   color: var(--charcoal);
   padding: var(--space-sm);
   border-radius: 10px;
@@ -3834,7 +3834,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(44, 44, 44, 0.8), rgba(212, 175, 55, 0.4));
+  background: linear-gradient(45deg, rgba(44, 44, 44, 0.8), rgba(0, 102, 204, 0.4));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -4048,7 +4048,7 @@ p {
 }
 
 .info-item.profit {
-  background: rgba(212, 175, 55, 0.2);
+  background: rgba(0, 102, 204, 0.2);
   border-radius: 10px;
   border: none;
   font-weight: 600;
@@ -4283,7 +4283,7 @@ p {
 
 .select-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.5);
 }
 
 /* Progress Container */
@@ -4367,7 +4367,7 @@ p {
 .progress-step.active .step-number {
   background: var(--bright-blue);
   color: var(--charcoal);
-  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2);
   transform: scale(1.1);
 }
 
@@ -4435,7 +4435,7 @@ p {
 .form-group select:focus {
   outline: none;
   border-color: var(--bright-blue);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
 }
 
 .form-group textarea {
@@ -4494,7 +4494,7 @@ p {
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.5);
 }
 
 .submit-btn:disabled {
