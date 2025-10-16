@@ -634,13 +634,13 @@ class RotatingText {
   constructor() {
     this.rotatingElement = document.getElementById('rotating-text');
     this.phrases = [
-      'Digital Excellence',
-      'Financial Clarity',
-      'Process Optimization',
-      'Real Estate Success',
-      'Business Development',
-      'Strategic Growth',
-      'Operational Innovation'
+      'Delivers Results',
+      'Drives Growth',
+      'Executes Flawlessly',
+      'Wins Markets',
+      'Scales Fast',
+      'Dominates Competition',
+      'Maximizes ROI'
     ];
     this.currentIndex = 0;
     this.init();
@@ -1419,7 +1419,7 @@ document.addEventListener('DOMContentLoaded', () => {
   new OrderForm();
   new CandlMatchForm();
 
-  console.log('✨ All systems illuminated and ready for strategic excellence!');
+  console.log('⚡ C&L Strategy - Systems loaded and ready to execute.');
 });
 
 // Add some CSS for loading states and typing cursor
