@@ -4160,6 +4160,7 @@ p {
   margin-bottom: 10px;
   font-weight: 700;
   font-family: var(--font-display);
+  color: var(--white) !important;
 }
 
 .header-section .tagline {
