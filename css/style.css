@@ -824,10 +824,15 @@ p {
   border-color: var(--bright-blue);
 }
 
+.insight-card.featured .insight-title {
+  color: var(--white);
+  font-weight: 700;
+}
+
 .insight-card.featured .insight-category,
 .insight-card.featured .insight-date,
 .insight-card.featured .insight-excerpt {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .insight-card:hover {
@@ -856,8 +861,9 @@ p {
 }
 
 .insight-card.featured .insight-category {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   color: var(--white);
+  font-weight: 700;
 }
 
 .insight-date {
