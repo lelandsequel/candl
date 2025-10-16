@@ -34,12 +34,3 @@
 #   from = "/*"
 #   to = "/404.html"
 #   status = 404
-
-
-# Form notifications - send submissions to match@candlstrategy.com
-[[plugins]]
-  package = "@netlify/plugin-emails"
-  
-  [plugins.inputs]
-    to = "match@candlstrategy.com"
-    subject = "New C&L Match Submission"
