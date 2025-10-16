@@ -1,0 +1,24 @@
+CSS Variable Replacement Plan:
+
+OLD VARIABLES (to remove/replace):
+--primary-gold → --bright-blue
+--warm-gold → --bright-blue  
+--deep-gold → --navy-blue
+--soft-cream → --off-white
+--warm-white → --white
+--flame-gradient → --primary-gradient
+--golden-gradient → --primary-gradient
+--dark-gradient → --primary-gradient
+
+COLORS TO REPLACE:
+rgba(212, 175, 55, ...) → rgba(0, 102, 204, ...) [bright blue]
+#d4af37 → #0066cc [bright blue]
+#b8860b → #0052a3 [accent blue]
+#ff6b35 → #0066cc [bright blue]
+
+CLASSES TO UPDATE:
+.candle-visual → remove entirely
+.candle-flame → remove entirely
+.candle-body → remove entirely
+.light-circle → remove entirely
+

@@ -1,6 +1,6 @@
 /* ==========================================================================
-   C&L Strategy - Strategic Execution
-   Professional Corporate Design - BCG/Emergent Inspired
+   C&L Strategy - Illuminating Business Solutions
+   Custom CSS with Candle/Light Theming
    ========================================================================== */
 
 /* CSS Variables for Theme */
@@ -739,7 +739,7 @@ p {
 .candle-flame {
   width: 30px;
   height: 50px;
-  background: var(--primary-gradient);
+  background: var(--flame-gradient);
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   margin-bottom: 10px;
   animation: flicker 2s ease-in-out infinite alternate;
@@ -749,7 +749,7 @@ p {
 .candle-body {
   width: 60px;
   height: 200px;
-  background: linear-gradient(180deg, var(--bright-blue) 0%, var(--navy-blue) 100%);
+  background: linear-gradient(180deg, var(--warm-gold) 0%, var(--deep-gold) 100%);
   border-radius: 5px 5px 10px 10px;
   box-shadow: var(--shadow-md);
 }
@@ -1918,7 +1918,7 @@ p {
 
 .step {
   background: rgba(212, 175, 55, 0.2);
-  color: var(--navy-blue);
+  color: var(--deep-gold);
   padding: var(--space-xs) var(--space-md);
   border-radius: 20px;
   font-size: 0.9rem;
@@ -2340,7 +2340,7 @@ p {
 .rig-base {
   width: 80px;
   height: 30px;
-  background: var(--navy-blue);
+  background: var(--deep-gold);
   border-radius: 5px;
   box-shadow: var(--shadow-md);
 }
@@ -4239,7 +4239,7 @@ p {
   display: block;
   font-size: 22px;
   font-weight: 700;
-  color: var(--navy-blue);
+  color: var(--deep-gold);
   margin-bottom: 25px;
   font-family: var(--font-display);
 }
@@ -4667,7 +4667,7 @@ p {
 }
 
 .service-price {
-  color: var(--navy-blue);
+  color: var(--deep-gold);
   font-weight: 700;
 }
 
