@@ -1300,16 +1300,26 @@ class CandlMatchForm {
         formData.append(fileFieldName, fileInput.files[0]);
       }
 
-      // Submit via Formspree (email)
-      const response = await fetch(FORM_ENDPOINT, {
+      // Submit via Formspree (email) - with fallback to Getform
+      let response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
 
+      // If Formspree fails, try Getform
+      if (!response.ok && FILE_UPLOAD_ENDPOINT) {
+        console.warn(`Formspree failed with ${response.status}, trying Getform...`);
+        response = await fetch(FILE_UPLOAD_ENDPOINT, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+      }
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        console.error('Formspree error response:', errorData);
+        console.error('Form submission error response:', errorData);
         throw new Error(`Submission failed: ${response.status} - ${errorData.error || 'Unknown error'}`);
       }
 
