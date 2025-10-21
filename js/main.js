@@ -1259,37 +1259,18 @@ class CandlMatchForm {
   }
 
   async submitOrder() {
-    const btn = event.target;
-    btn.disabled = true;
-    btn.textContent = 'Submitting...';
-    
-    try {
-      // Get the appropriate Netlify form based on service type
-      let formName = `candlmatch-${this.appState.selectedService}`;
-      if (this.appState.selectedService === 'educationalGrants') {
-        formName = 'candlmatch-educational-grants';
-      } else if (this.appState.selectedService === 'businessGrants') {
-        formName = 'candlmatch-business-grants';
-      } else if (this.appState.selectedService === 'boardSeats') {
-        formName = 'candlmatch-board-seats';
-      }
-      
-      const netlifyForm = document.querySelector(`form[name="${formName}"]`);
-      
-      if (!netlifyForm) {
-        throw new Error(`Form not found: ${formName}`);
-      }
+    const btn = document.querySelector('.review-container .submit-btn');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+    }
 
-      // Create FormData and populate with our collected data
-      const formData = new FormData(netlifyForm);
-      
-      // Clear existing data and populate with our data
-      for (let [key, value] of formData.entries()) {
-        formData.delete(key);
-      }
-      
+    try {
+      // Create FormData with all collected data
+      const formData = new FormData();
+
       // Add form identification
-      formData.append('form-name', formName);
+      formData.append('form-name', `candlmatch-${this.appState.selectedService}`);
       formData.append('service-type', this.getServiceDisplayName(this.appState.selectedService));
       formData.append('selected_tier', JSON.stringify(this.appState.selectedTier));
       formData.append('ancillary_services', JSON.stringify(this.appState.selectedAncillary));
@@ -1311,45 +1292,34 @@ class CandlMatchForm {
         formData.append(fileFieldName, fileInput.files[0]);
       }
 
-      // Submit to Netlify Forms
-      const response = await fetch('/', {
+      // Submit via Formspree (email)
+      const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
+        body: formData,
+        headers: { 'Accept': 'application/json' }
       });
 
       if (!response.ok) {
-        console.warn(`Netlify Forms submission returned ${response.status}, attempting fallback...`);
-        // Fallback: try Formspree if Netlify fails
-        if (FORM_ENDPOINT && FORM_ENDPOINT.length > 0) {
-          const fallbackResponse = await fetch(FORM_ENDPOINT, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
-          if (!fallbackResponse.ok) {
-            throw new Error(`Both Netlify and fallback submission failed`);
-          }
-        } else {
-          throw new Error(`Submission failed: ${response.status}`);
-        }
+        throw new Error(`Submission failed: ${response.status}`);
       }
 
       // Generate order ID
       const orderId = 'CLM-' + this.appState.selectedService.toUpperCase().substring(0, 3) + '-' + Date.now().toString().slice(-6);
-      
+
       this.hideAllSections();
       document.getElementById('progress-bar').style.display = 'none';
       document.getElementById('success-section').style.display = 'block';
       document.getElementById('success-section').classList.add('active');
       this.displayFinalOrderDetails(orderId);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      
+
     } catch (error) {
       console.error('Submission error:', error);
       alert('There was an error submitting your order. Please try again or contact us at match@candlstrategy.com');
-      btn.disabled = false;
-      btn.textContent = 'Submit Order';
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = 'Submit Order';
+      }
     }
   }
 
