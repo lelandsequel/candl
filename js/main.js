@@ -5,8 +5,8 @@
 
 
 // Form submission configuration
-// If you have a backend/form service (e.g., Formspree, Getform, Netlify Forms), set FORM_ENDPOINT to that POST URL.
-// Otherwise, the code will fall back to a mailto: to send details to FORM_TO (attachments cannot be auto-attached via mailto).
+// C&L Match forms send to both leland and match email addresses
+const CANDLMATCH_EMAILS = ['leland@candlstrategy.com', 'match@candlstrategy.com'];
 const FORM_TO = 'info@candlstrategy.com';
 const FORM_ENDPOINT = 'https://formspree.io/f/xovkjdpl';
 const FILE_UPLOAD_ENDPOINT = 'https://getform.io/f/amdyrexb';
@@ -1300,28 +1300,25 @@ class CandlMatchForm {
         formData.append(fileFieldName, fileInput.files[0]);
       }
 
-      // Submit via Formspree (email) - with fallback to Getform
-      let response = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+      // Submit via mailto to both emails
+      const emailSubject = encodeURIComponent(`C&L Match Order: ${this.getServiceDisplayName(this.appState.selectedService)}`);
+      const emailBody = this.buildEmailBody();
+      const recipientEmails = CANDLMATCH_EMAILS.join(',');
 
-      // If Formspree fails, try Getform
-      if (!response.ok && FILE_UPLOAD_ENDPOINT) {
-        console.warn(`Formspree failed with ${response.status}, trying Getform...`);
-        response = await fetch(FILE_UPLOAD_ENDPOINT, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-      }
+      window.location.href = `mailto:${recipientEmails}?subject=${emailSubject}&body=${emailBody}`;
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.error('Form submission error response:', errorData);
-        throw new Error(`Submission failed: ${response.status} - ${errorData.error || 'Unknown error'}`);
-      }
+      // Give the mailto a moment to open, then show success
+      setTimeout(() => {
+        // Generate order ID
+        const orderId = 'CLM-' + this.appState.selectedService.toUpperCase().substring(0, 3) + '-' + Date.now().toString().slice(-6);
+
+        this.hideAllSections();
+        document.getElementById('progress-bar').style.display = 'none';
+        document.getElementById('success-section').style.display = 'block';
+        document.getElementById('success-section').classList.add('active');
+        this.displayFinalOrderDetails(orderId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 500);
 
       // Generate order ID
       const orderId = 'CLM-' + this.appState.selectedService.toUpperCase().substring(0, 3) + '-' + Date.now().toString().slice(-6);
@@ -1353,6 +1350,40 @@ class CandlMatchForm {
       boardSeats: 'Board Director Seats'
     };
     return names[serviceType] || serviceType;
+  }
+
+  buildEmailBody() {
+    const lines = [
+      `=== C&L MATCH ORDER ===`,
+      `Service: ${this.getServiceDisplayName(this.appState.selectedService)}`,
+      `Tier: ${this.appState.selectedTier.name} ($${this.appState.selectedTier.price})`,
+      ``,
+      `=== CUSTOMER INFORMATION ===`
+    ];
+
+    // Add form data
+    for (let [key, value] of Object.entries(this.appState.formData)) {
+      const displayKey = this.formatFieldName(key);
+      if (Array.isArray(value)) {
+        lines.push(`${displayKey}: ${value.join(', ')}`);
+      } else {
+        lines.push(`${displayKey}: ${value}`);
+      }
+    }
+
+    // Add ancillary services if any
+    if (this.appState.selectedAncillary && this.appState.selectedAncillary.length > 0) {
+      lines.push(``, `=== ADD-ON SERVICES ===`);
+      this.appState.selectedAncillary.forEach(service => {
+        lines.push(`- ${service.name}: $${service.price}`);
+      });
+    }
+
+    // Add total
+    lines.push(``, `=== TOTAL ===`, `$${this.appState.totalPrice}`);
+    lines.push(``, `Please review and confirm this order.`);
+
+    return encodeURIComponent(lines.join('\n'));
   }
 
   displayFinalOrderDetails(orderId) {
