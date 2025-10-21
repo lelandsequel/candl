@@ -1319,7 +1319,20 @@ class CandlMatchForm {
       });
 
       if (!response.ok) {
-        throw new Error(`Submission failed: ${response.status}`);
+        console.warn(`Netlify Forms submission returned ${response.status}, attempting fallback...`);
+        // Fallback: try Formspree if Netlify fails
+        if (FORM_ENDPOINT && FORM_ENDPOINT.length > 0) {
+          const fallbackResponse = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (!fallbackResponse.ok) {
+            throw new Error(`Both Netlify and fallback submission failed`);
+          }
+        } else {
+          throw new Error(`Submission failed: ${response.status}`);
+        }
       }
 
       // Generate order ID
