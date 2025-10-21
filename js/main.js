@@ -1305,22 +1305,10 @@ class CandlMatchForm {
       const emailBody = this.buildEmailBody();
       const recipientEmails = CANDLMATCH_EMAILS.join(',');
 
+      // Open email client
       window.location.href = `mailto:${recipientEmails}?subject=${emailSubject}&body=${emailBody}`;
 
-      // Give the mailto a moment to open, then show success
-      setTimeout(() => {
-        // Generate order ID
-        const orderId = 'CLM-' + this.appState.selectedService.toUpperCase().substring(0, 3) + '-' + Date.now().toString().slice(-6);
-
-        this.hideAllSections();
-        document.getElementById('progress-bar').style.display = 'none';
-        document.getElementById('success-section').style.display = 'block';
-        document.getElementById('success-section').classList.add('active');
-        this.displayFinalOrderDetails(orderId);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 500);
-
-      // Generate order ID
+      // Generate order ID and show success page
       const orderId = 'CLM-' + this.appState.selectedService.toUpperCase().substring(0, 3) + '-' + Date.now().toString().slice(-6);
 
       this.hideAllSections();
