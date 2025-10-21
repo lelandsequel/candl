@@ -1269,6 +1269,14 @@ class CandlMatchForm {
       // Create FormData with all collected data
       const formData = new FormData();
 
+      // Formspree requires an email field - use the one from form data
+      const userEmail = this.appState.formData.email || '';
+      if (!userEmail) {
+        throw new Error('Email is required to submit the form');
+      }
+      formData.append('email', userEmail);
+      formData.append('_replyto', userEmail);
+
       // Add form identification
       formData.append('form-name', `candlmatch-${this.appState.selectedService}`);
       formData.append('service-type', this.getServiceDisplayName(this.appState.selectedService));
@@ -1300,7 +1308,9 @@ class CandlMatchForm {
       });
 
       if (!response.ok) {
-        throw new Error(`Submission failed: ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Formspree error response:', errorData);
+        throw new Error(`Submission failed: ${response.status} - ${errorData.error || 'Unknown error'}`);
       }
 
       // Generate order ID
