@@ -677,7 +677,7 @@ p {
 /* About Section */
 .about {
   padding: var(--space-2xl) 0;
-  background: var(--off-white);
+  background: var(--dark-navy);
 }
 
 .about-content {
@@ -691,6 +691,7 @@ p {
   margin-bottom: var(--space-lg);
   line-height: 1.8;
   font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .about-values {
@@ -1004,7 +1005,7 @@ p {
 
 .contact {
   padding: var(--space-2xl) 0;
-  background: var(--off-white);
+  background: var(--dark-navy);
 }
 
 .contact-content {
@@ -1022,13 +1023,14 @@ p {
   gap: var(--space-md);
   margin-bottom: var(--space-lg);
   padding: var(--space-lg);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(212, 165, 116, 0.1);
   border-radius: 15px;
   transition: all var(--transition-normal);
+  border: 1px solid rgba(212, 165, 116, 0.2);
 }
 
 .contact-method:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(212, 165, 116, 0.15);
   transform: translateX(10px);
 }
 
@@ -1044,26 +1046,27 @@ p {
 }
 
 .contact-icon i {
-  color: var(--charcoal);
+  color: var(--dark-navy);
   font-size: 1.2rem;
 }
 
 .contact-details h4 {
   margin-bottom: var(--space-xs);
-  color: var(--charcoal);
+  color: var(--gold);
 }
 
 .contact-details p {
-  color: var(--dark-gray);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
 }
 
 /* Contact Form */
 .contact-form-container {
-  background: var(--white);
+  background: var(--deep-navy);
   padding: var(--space-xl);
   border-radius: 20px;
   box-shadow: var(--shadow-md);
+  border: 1px solid rgba(212, 165, 116, 0.2);
 }
 
 .contact-form {
@@ -1116,9 +1119,10 @@ p {
 
 /* Footer */
 .footer {
-  background: var(--navy-gradient);
+  background: var(--dark-navy);
   color: var(--white);
   padding: var(--space-2xl) 0 var(--space-lg) 0;
+  border-top: 1px solid rgba(212, 165, 116, 0.2);
 }
 
 .footer-content {
@@ -1142,7 +1146,7 @@ p {
 
 .footer-title {
   margin-bottom: var(--space-lg);
-  color: var(--bright-blue);
+  color: var(--gold);
 }
 
 .footer-links {
@@ -1160,7 +1164,7 @@ p {
 }
 
 .footer-links a:hover {
-  color: var(--bright-blue);
+  color: var(--gold);
 }
 
 .social-links {
@@ -1530,12 +1534,12 @@ p {
 }
 
 .services-cta h2, .about-cta h2 {
-  color: var(--charcoal);
+  color: var(--dark-navy);
   margin-bottom: var(--space-md);
 }
 
 .services-cta p, .about-cta p {
-  color: var(--charcoal);
+  color: var(--dark-navy);
   font-size: 1.1rem;
   margin-bottom: var(--space-xl);
   opacity: 0.9;
@@ -1549,14 +1553,14 @@ p {
 }
 
 .services-cta .btn, .about-cta .btn {
-  background: var(--charcoal);
-  color: var(--white);
-  border: 2px solid var(--charcoal);
+  background: var(--dark-navy);
+  color: var(--gold);
+  border: 2px solid var(--dark-navy);
 }
 
 .services-cta .btn:hover, .about-cta .btn:hover {
-  background: var(--white);
-  color: var(--charcoal);
+  background: var(--gold);
+  color: var(--dark-navy);
 }
 
 /* Services Preview on Homepage */
