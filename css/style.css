@@ -5,11 +5,13 @@
 
 /* CSS Variables for Theme */
 :root {
-  /* Professional Corporate Palette - BCG/Emergent Inspired */
-  --dark-navy: #00256a;
-  --navy-blue: #003d82;
-  --bright-blue: #0066cc;
-  --accent-blue: #0052a3;
+  /* Energy Theme Palette - Dark Navy & Gold */
+  --dark-navy: #0a1628;
+  --navy-blue: #0f2847;
+  --deep-navy: #1a3a52;
+  --gold: #d4a574;
+  --gold-light: #e8c9a0;
+  --gold-dark: #b8860b;
   --white: #FFFFFF;
   --off-white: #f9fafb;
   --light-gray: #e5e7eb;
@@ -18,9 +20,11 @@
   --charcoal: #1f2937;
   --black: #111827;
 
-  /* Gradients - Subtle and Professional */
-  --primary-gradient: linear-gradient(135deg, var(--bright-blue) 0%, var(--navy-blue) 100%);
-  --navy-gradient: linear-gradient(180deg, var(--dark-navy) 0%, #001a4d 100%);
+  /* Gradients - Energy Theme */
+  --primary-gradient: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  --navy-gradient: linear-gradient(180deg, var(--dark-navy) 0%, var(--navy-blue) 100%);
+  --hero-gradient: linear-gradient(180deg, var(--dark-navy) 0%, var(--deep-navy) 50%, var(--dark-navy) 100%);
+  --gold-to-navy: linear-gradient(180deg, var(--gold) 0%, var(--dark-navy) 100%);
   --subtle-gradient: linear-gradient(180deg, var(--white) 0%, var(--off-white) 100%);
 
   /* Typography - Clean Sans-Serif */
@@ -39,8 +43,8 @@
   --shadow-sm: 0 2px 8px rgba(10, 22, 40, 0.08);
   --shadow-md: 0 4px 20px rgba(10, 22, 40, 0.12);
   --shadow-lg: 0 8px 32px rgba(10, 22, 40, 0.16);
-  --glow-shadow: 0 0 30px rgba(14, 165, 233, 0.25);
-  --purple-glow: 0 0 30px rgba(139, 92, 246, 0.25);
+  --glow-shadow: 0 0 30px rgba(212, 165, 116, 0.25);
+  --gold-glow: 0 0 30px rgba(212, 165, 116, 0.3);
 
   /* Transitions */
   --transition-fast: 0.2s ease;
@@ -64,7 +68,7 @@ body {
   font-family: var(--font-primary);
   line-height: 1.65;
   color: var(--dark-gray);
-  background-color: var(--white);
+  background-color: var(--dark-navy);
   overflow-x: hidden;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -137,8 +141,8 @@ p {
 }
 
 .btn-primary {
-  background: var(--bright-blue);
-  color: var(--white);
+  background: var(--gold);
+  color: var(--dark-navy);
   box-shadow: none;
   font-weight: 600;
   border-radius: 4px;
@@ -146,21 +150,21 @@ p {
 }
 
 .btn-primary:hover {
-  background: var(--accent-blue);
+  background: var(--gold-light);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--white);
-  border: 2px solid var(--white);
+  color: var(--gold);
+  border: 2px solid var(--gold);
   font-weight: 600;
   border-radius: 4px;
 }
 
 .btn-secondary:hover {
-  background: var(--white);
+  background: var(--gold);
   color: var(--dark-navy);
   transform: translateY(-1px);
 }
@@ -170,35 +174,35 @@ p {
   justify-content: center;
 }
 
-/* Navigation - Clean Professional Style */
+/* Navigation - Energy Theme Dark Navy & Gold */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: var(--white);
-  border-bottom: 1px solid var(--light-gray);
+  background: var(--dark-navy);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.2);
   z-index: 1000;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .navbar.scrolled {
-  background: var(--white);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--dark-navy);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .navbar .nav-link,
 .navbar .company-name {
-  color: var(--black);
+  color: var(--white);
 }
 
 .navbar .tagline {
-  color: var(--medium-gray);
+  color: var(--gold);
 }
 
 .navbar .logo-icon i {
-  color: var(--bright-blue);
+  color: var(--gold);
 }
 
 .nav-container {
@@ -220,17 +224,17 @@ p {
 .logo-icon {
   width: 44px;
   height: 44px;
-  background: var(--bright-blue);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;
+  box-shadow: 0 0 15px rgba(212, 165, 116, 0.3);
 }
 
 .logo-icon i {
   font-size: 1.25rem;
-  color: var(--white);
+  color: var(--dark-navy);
 }
 
 .logo-text {
@@ -306,7 +310,7 @@ p {
   transition: all var(--transition-normal);
 }
 
-/* Hero Section - BCG/Emergent Style */
+/* Hero Section - Energy Theme */
 .hero {
   min-height: 90vh;
   display: flex;
@@ -314,7 +318,7 @@ p {
   justify-content: center;
   align-items: center;
   padding: 140px var(--space-md) 80px;
-  background: var(--dark-navy);
+  background: var(--hero-gradient);
   position: relative;
   overflow: hidden;
 }
@@ -326,7 +330,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 100%);
+  background: linear-gradient(180deg, rgba(212, 165, 116, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
   z-index: 0;
 }
 
@@ -359,7 +363,7 @@ p {
 }
 
 .highlight {
-  color: #FFFFFF !important;
+  color: var(--gold) !important;
   position: relative;
   display: inline-block;
   font-weight: 900 !important;
@@ -367,7 +371,7 @@ p {
 
 /* Enhanced Rotating Text Styling - MAXIMUM IMPACT */
 .rotating-text {
-  color: #FFFFFF !important;
+  color: var(--gold) !important;
   font-size: 1em !important;
   font-weight: 900 !important;
   display: inline-block;
@@ -380,10 +384,10 @@ p {
 
 @keyframes glow-pulse {
   0%, 100% {
-    filter: drop-shadow(0 0 5px rgba(14, 165, 233, 0.3));
+    filter: drop-shadow(0 0 5px rgba(212, 165, 116, 0.3));
   }
   50% {
-    filter: drop-shadow(0 0 15px rgba(14, 165, 233, 0.6));
+    filter: drop-shadow(0 0 15px rgba(212, 165, 116, 0.6));
   }
 }
 
@@ -427,9 +431,9 @@ p {
   background: var(--primary-gradient);
   border-radius: 50%;
   box-shadow:
-    0 0 50px rgba(14, 165, 233, 0.5),
-    0 0 100px rgba(139, 92, 246, 0.3),
-    0 0 150px rgba(14, 165, 233, 0.1);
+    0 0 50px rgba(212, 165, 116, 0.5),
+    0 0 100px rgba(212, 165, 116, 0.3),
+    0 0 150px rgba(212, 165, 116, 0.1);
   animation: pulse 3s ease-in-out infinite;
 }
 
@@ -447,7 +451,7 @@ p {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(14, 165, 233, 0.3) 50%,
+    rgba(212, 165, 116, 0.3) 50%,
     transparent 100%
   );
   transform-origin: center;
@@ -551,11 +555,20 @@ p {
 
 .section-title {
   margin-bottom: var(--space-md);
+  color: var(--white);
+}
+
+.services-preview .section-title {
+  color: var(--white);
 }
 
 .section-subtitle {
   font-size: 1.2rem;
   color: var(--medium-gray);
+}
+
+.services-preview .section-subtitle {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .services-grid {
@@ -582,7 +595,7 @@ p {
   left: 0;
   width: 4px;
   height: 100%;
-  background: var(--bright-blue);
+  background: var(--gold);
   transform: scaleY(0);
   transition: transform 0.3s ease;
   transform-origin: bottom;
@@ -595,13 +608,13 @@ p {
 .service-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  border-color: var(--bright-blue);
+  border-color: var(--gold);
 }
 
 .service-icon {
   width: 56px;
   height: 56px;
-  background: var(--bright-blue);
+  background: var(--gold);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -612,12 +625,12 @@ p {
 }
 
 .service-card:hover .service-icon {
-  background: var(--accent-blue);
+  background: var(--gold-light);
 }
 
 .service-icon i {
   font-size: 1.5rem;
-  color: var(--white);
+  color: var(--dark-navy);
 }
 
 .service-title {
@@ -625,9 +638,17 @@ p {
   color: var(--dark-navy);
 }
 
+.services-preview .service-title {
+  color: var(--white);
+}
+
 .service-description {
   margin-bottom: var(--space-lg);
   line-height: 1.7;
+}
+
+.services-preview .service-description {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .service-features {
@@ -639,6 +660,10 @@ p {
   padding-left: var(--space-md);
   position: relative;
   color: var(--dark-gray);
+}
+
+.services-preview .service-features li {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .service-features li::before {
@@ -1537,7 +1562,7 @@ p {
 /* Services Preview on Homepage */
 .services-preview {
   padding: var(--space-2xl) 0;
-  background: var(--off-white);
+  background: var(--dark-navy);
 }
 
 .services-preview .services-grid {
@@ -1551,6 +1576,8 @@ p {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background: var(--deep-navy);
+  border-color: rgba(212, 165, 116, 0.2);
 }
 
 .services-preview .service-card .btn {
