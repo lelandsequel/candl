@@ -1421,6 +1421,54 @@ document.addEventListener('input', (e) => {
   }
 });
 
+// AI Report Form Handler
+function handleAIReportSubmit(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const industry = document.getElementById('industry').value;
+  const niche = document.getElementById('niche').value;
+  const companySize = document.getElementById('company-size').value;
+  const email = document.getElementById('email').value;
+
+  // Validate form
+  if (!industry || !niche || !companySize || !email) {
+    alert('Please fill in all required fields');
+    return;
+  }
+
+  // Create email body with report request details
+  const emailSubject = encodeURIComponent(`State of AI Report Request - ${industry}`);
+  const emailBody = encodeURIComponent(
+    `I would like to receive a customized State of AI Report for my organization.\n\n` +
+    `Industry: ${industry}\n` +
+    `Specific Niche/Focus: ${niche}\n` +
+    `Company Size: ${companySize}\n` +
+    `Email: ${email}\n\n` +
+    `Please send me a comprehensive analysis of AI adoption and opportunities in my industry niche.`
+  );
+
+  // Open email client with pre-filled information
+  window.location.href = `mailto:info@candlstrategy.com?subject=${emailSubject}&body=${emailBody}`;
+
+  // Show success message
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-check"></i> Report Request Sent!';
+  btn.style.backgroundColor = 'var(--gold)';
+  btn.style.color = 'var(--dark-navy)';
+
+  // Reset form
+  form.reset();
+
+  // Restore button after 3 seconds
+  setTimeout(() => {
+    btn.innerHTML = originalText;
+    btn.style.backgroundColor = '';
+    btn.style.color = '';
+  }, 3000);
+}
+
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🕯️ C&L Strategy - Illuminating your digital experience...');
@@ -1440,6 +1488,12 @@ document.addEventListener('DOMContentLoaded', () => {
   new AccessibilityEnhancer();
   new OrderForm();
   new CandlMatchForm();
+
+  // Initialize AI Report form if it exists on the page
+  const aiReportForm = document.getElementById('aiReportForm');
+  if (aiReportForm) {
+    aiReportForm.addEventListener('submit', handleAIReportSubmit);
+  }
 
   console.log('⚡ C&L Strategy - Systems loaded and ready to execute.');
 });
