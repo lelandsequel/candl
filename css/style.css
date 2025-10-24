@@ -555,7 +555,11 @@ p {
 
 .section-title {
   margin-bottom: var(--space-md);
-  color: var(--white);
+  color: var(--dark-navy);
+}
+
+.services .section-title {
+  color: var(--dark-navy);
 }
 
 .services-preview .section-title {
@@ -565,6 +569,10 @@ p {
 .section-subtitle {
   font-size: 1.2rem;
   color: var(--medium-gray);
+}
+
+.services .section-subtitle {
+  color: var(--dark-gray);
 }
 
 .services-preview .section-subtitle {
