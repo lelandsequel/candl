@@ -269,7 +269,7 @@ p {
 
 .nav-link {
   text-decoration: none;
-  color: var(--black);
+  color: var(--white);
   font-weight: 500;
   position: relative;
   transition: color 0.2s ease;
@@ -284,12 +284,12 @@ p {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--bright-blue);
+  background: var(--gold);
   transition: width 0.2s ease;
 }
 
 .nav-link:hover {
-  color: var(--bright-blue);
+  color: var(--gold);
 }
 
 .nav-link:hover::after {
@@ -306,7 +306,7 @@ p {
 .bar {
   width: 25px;
   height: 3px;
-  background: var(--dark-navy);
+  background: var(--white);
   transition: all var(--transition-normal);
 }
 
@@ -1726,13 +1726,13 @@ p {
 
 .dropdown-divider {
   height: 1px;
-  background: var(--light-gray);
+  background: rgba(212, 165, 116, 0.3);
   margin: var(--space-sm) var(--space-md);
 }
 
 /* Active navigation link */
 .nav-link.active {
-  color: var(--bright-blue) !important;
+  color: var(--gold) !important;
 }
 
 .nav-link.active::after {
@@ -1740,7 +1740,7 @@ p {
 }
 
 .dropdown-trigger.active {
-  color: var(--bright-blue) !important;
+  color: var(--gold) !important;
 }
 
 /* Individual Service Page Styles */
@@ -3055,6 +3055,31 @@ p {
 
   .nav-menu.active {
     left: 0;
+  }
+
+  /* Mobile nav-link colors - dark text on white background */
+  .nav-menu .nav-link {
+    color: var(--dark-navy) !important;
+  }
+
+  .nav-menu .nav-link:hover {
+    color: var(--gold) !important;
+  }
+
+  .nav-menu .nav-link.active {
+    color: var(--gold) !important;
+  }
+
+  .nav-menu .dropdown-trigger {
+    color: var(--dark-navy) !important;
+  }
+
+  .nav-menu .dropdown-trigger:hover {
+    color: var(--gold) !important;
+  }
+
+  .nav-menu .dropdown-trigger.active {
+    color: var(--gold) !important;
   }
 
   .nav-toggle {
