@@ -5,51 +5,59 @@
 
 /* CSS Variables for Theme */
 :root {
-  /* Energy Theme Palette - Dark Navy & Gold */
-  --dark-navy: #0a1628;
-  --navy-blue: #0f2847;
-  --deep-navy: #1a3a52;
-  --gold: #d4a574;
-  --gold-light: #e8c9a0;
-  --gold-dark: #b8860b;
+  /* Quiet Confidence Palette - Refined & Understated */
   --white: #FFFFFF;
-  --off-white: #f9fafb;
-  --light-gray: #e5e7eb;
-  --medium-gray: #6b7280;
-  --dark-gray: #374151;
-  --charcoal: #1f2937;
-  --black: #111827;
+  --warm-white: #FAFAF8;
+  --light-warm: #F5F5F3;
+  --soft-gray: #E8E8E5;
+  --mid-gray: #9CA3AF;
+  --text-gray: #4B5563;
+  --charcoal: #2C3340;
+  --deep-charcoal: #1A1F2E;
 
-  /* Gradients - Energy Theme */
-  --primary-gradient: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-  --navy-gradient: linear-gradient(180deg, var(--dark-navy) 0%, var(--navy-blue) 100%);
-  --hero-gradient: linear-gradient(180deg, var(--dark-navy) 0%, var(--deep-navy) 50%, var(--dark-navy) 100%);
-  --gold-to-navy: linear-gradient(180deg, var(--gold) 0%, var(--dark-navy) 100%);
-  --subtle-gradient: linear-gradient(180deg, var(--white) 0%, var(--off-white) 100%);
+  /* Accent Colors - Used Sparingly */
+  --navy: #1E3A5F;
+  --navy-muted: #2D4A6B;
+  --bronze: #9B826B;
+  --bronze-light: #B5A090;
+  --bronze-subtle: #D4C8BE;
 
-  /* Typography - Clean Sans-Serif */
+  /* Semantic Colors */
+  --text-primary: var(--charcoal);
+  --text-secondary: var(--text-gray);
+  --text-tertiary: var(--mid-gray);
+  --border-subtle: var(--soft-gray);
+  --bg-primary: var(--white);
+  --bg-secondary: var(--warm-white);
+  --bg-tertiary: var(--light-warm);
+
+  /* Minimal Gradients - Used Very Sparingly */
+  --subtle-gradient: linear-gradient(180deg, var(--white) 0%, var(--warm-white) 100%);
+  --bronze-gradient: linear-gradient(135deg, var(--bronze-light) 0%, var(--bronze) 100%);
+
+  /* Typography - Refined Sans-Serif */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 
-  /* Spacing */
+  /* Spacing - More Generous */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
-  --space-2xl: 4rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
 
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(10, 22, 40, 0.08);
-  --shadow-md: 0 4px 20px rgba(10, 22, 40, 0.12);
-  --shadow-lg: 0 8px 32px rgba(10, 22, 40, 0.16);
-  --glow-shadow: 0 0 30px rgba(212, 165, 116, 0.25);
-  --gold-glow: 0 0 30px rgba(212, 165, 116, 0.3);
+  /* Shadows - Subtle & Refined */
+  --shadow-xs: 0 1px 2px rgba(44, 51, 64, 0.04);
+  --shadow-sm: 0 1px 4px rgba(44, 51, 64, 0.06);
+  --shadow-md: 0 2px 8px rgba(44, 51, 64, 0.08);
+  --shadow-lg: 0 4px 16px rgba(44, 51, 64, 0.1);
 
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  /* Transitions - Smooth & Understated */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Reset & Base Styles */
@@ -66,9 +74,9 @@ html {
 
 body {
   font-family: var(--font-primary);
-  line-height: 1.65;
-  color: var(--dark-gray);
-  background-color: var(--dark-navy);
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
   overflow-x: hidden;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -85,13 +93,24 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--black);
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h1 { font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 600; }
+h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 600; }
+h3 { font-size: clamp(1.35rem, 2.5vw, 1.875rem); font-weight: 500; }
+h4 { font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: 500; }
+
+p {
+  margin-bottom: var(--space-md);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
 
 /* Ensure rotating text stays on one line */
 .hero-title .rotating-text {
@@ -107,66 +126,53 @@ p {
   font-size: 1.1rem;
 }
 
-/* Buttons */
+/* Buttons - Quiet Confidence */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: var(--space-md) var(--space-lg);
+  padding: 14px 28px;
   border: none;
-  border-radius: 50px;
+  border-radius: 6px;
   font-family: var(--font-primary);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
   transition: all var(--transition-normal);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left var(--transition-slow);
-}
-
-.btn:hover::before {
-  left: 100%;
+  display: none;
 }
 
 .btn-primary {
-  background: var(--gold);
-  color: var(--dark-navy);
-  box-shadow: none;
-  font-weight: 600;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  background: var(--charcoal);
+  color: var(--white);
+  box-shadow: var(--shadow-xs);
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all var(--transition-normal);
 }
 
 .btn-primary:hover {
-  background: var(--gold-light);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+  background: var(--deep-charcoal);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--gold);
-  border: 2px solid var(--gold);
-  font-weight: 600;
-  border-radius: 4px;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  font-weight: 500;
+  border-radius: 6px;
 }
 
 .btn-secondary:hover {
-  background: var(--gold);
-  color: var(--dark-navy);
-  transform: translateY(-1px);
+  background: var(--bg-tertiary);
+  border-color: var(--bronze-light);
 }
 
 .btn-full {
@@ -174,35 +180,36 @@ p {
   justify-content: center;
 }
 
-/* Navigation - Energy Theme Dark Navy & Gold */
+/* Navigation - Quiet Confidence */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: var(--dark-navy);
-  border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
   z-index: 1000;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition-normal);
+  box-shadow: none;
 }
 
 .navbar.scrolled {
-  background: var(--dark-navy);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
 }
 
 .navbar .nav-link,
 .navbar .company-name {
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .navbar .tagline {
-  color: var(--gold);
+  color: var(--text-tertiary);
 }
 
 .navbar .logo-icon i {
-  color: var(--gold);
+  color: var(--bronze);
 }
 
 .nav-container {
@@ -222,19 +229,19 @@ p {
 }
 
 .logo-icon {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-tertiary);
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 15px rgba(212, 165, 116, 0.3);
+  border: 1px solid var(--border-subtle);
 }
 
 .logo-icon i {
-  font-size: 1.25rem;
-  color: var(--dark-navy);
+  font-size: 1.15rem;
+  color: var(--bronze);
 }
 
 .logo-text {
@@ -269,10 +276,10 @@ p {
 
 .nav-link {
   text-decoration: none;
-  color: var(--white);
+  color: var(--text-secondary);
   font-weight: 500;
   position: relative;
-  transition: color 0.2s ease;
+  transition: color var(--transition-normal);
   padding: 8px 0;
   font-size: 0.9375rem;
 }
@@ -283,13 +290,13 @@ p {
   bottom: 0;
   left: 0;
   width: 0;
-  height: 2px;
-  background: var(--gold);
-  transition: width 0.2s ease;
+  height: 1px;
+  background: var(--bronze);
+  transition: width var(--transition-normal);
 }
 
 .nav-link:hover {
-  color: var(--gold);
+  color: var(--text-primary);
 }
 
 .nav-link:hover::after {
@@ -310,15 +317,15 @@ p {
   transition: all var(--transition-normal);
 }
 
-/* Hero Section - Energy Theme */
+/* Hero Section - Quiet Confidence */
 .hero {
-  min-height: 90vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 140px var(--space-md) 80px;
-  background: var(--hero-gradient);
+  padding: 140px var(--space-md) var(--space-3xl);
+  background: var(--bg-secondary);
   position: relative;
   overflow: hidden;
 }
@@ -330,8 +337,9 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgba(212, 165, 116, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: linear-gradient(180deg, transparent 0%, var(--light-warm) 100%);
   z-index: 0;
+  opacity: 0.5;
 }
 
 .hero-content {
@@ -346,57 +354,48 @@ p {
 }
 
 .hero-text {
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .hero-text p {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-secondary);
 }
 
 .hero-title {
   margin-bottom: var(--space-lg);
-  color: var(--white);
-  font-size: clamp(2.75rem, 6vw, 5rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
+  color: var(--text-primary);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .highlight {
-  color: var(--gold) !important;
+  color: var(--bronze);
   position: relative;
   display: inline-block;
-  font-weight: 900 !important;
+  font-weight: 600;
 }
 
-/* Enhanced Rotating Text Styling - MAXIMUM IMPACT */
+/* Subtle rotating text - no glow */
 .rotating-text {
-  color: var(--gold) !important;
-  font-size: 1em !important;
-  font-weight: 900 !important;
+  color: var(--bronze);
+  font-size: 1em;
+  font-weight: 600;
   display: inline-block;
   min-width: 280px;
   text-align: left;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   white-space: nowrap;
 }
 
-@keyframes glow-pulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 5px rgba(212, 165, 116, 0.3));
-  }
-  50% {
-    filter: drop-shadow(0 0 15px rgba(212, 165, 116, 0.6));
-  }
-}
-
 .hero-subtitle {
-  font-size: 1.125rem;
+  font-size: 1.1875rem;
   margin-bottom: var(--space-2xl);
   max-width: 700px;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.65;
+  color: var(--text-secondary);
+  line-height: 1.7;
   font-weight: 400;
 }
 
@@ -406,7 +405,7 @@ p {
   margin-bottom: var(--space-lg);
 }
 
-/* Hero Visual Effects */
+/* Hero Visual - Minimal & Refined */
 .hero-visual {
   position: relative;
   display: flex;
@@ -417,80 +416,43 @@ p {
 
 .illumination-effect {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Simple accent shape - no glow */
 .glow-orb {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150px;
-  height: 150px;
-  background: var(--primary-gradient);
-  border-radius: 50%;
-  box-shadow:
-    0 0 50px rgba(212, 165, 116, 0.5),
-    0 0 100px rgba(212, 165, 116, 0.3),
-    0 0 150px rgba(212, 165, 116, 0.1);
-  animation: pulse 3s ease-in-out infinite;
-}
-
-.light-rays {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-}
-
-.ray {
-  position: absolute;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(212, 165, 116, 0.3) 50%,
-    transparent 100%
-  );
-  transform-origin: center;
-}
-
-.ray-1 {
   width: 200px;
-  height: 2px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(0deg);
-  animation: rotate 10s linear infinite;
+  height: 200px;
+  background: var(--bg-tertiary);
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  position: relative;
 }
 
-.ray-2 {
-  width: 180px;
-  height: 1px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  animation: rotate 12s linear infinite reverse;
+.glow-orb::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  background: linear-gradient(135deg, var(--bronze-subtle) 0%, transparent 100%);
+  border-radius: 50%;
+  opacity: 0.3;
 }
 
-.ray-3 {
-  width: 160px;
-  height: 2px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(90deg);
-  animation: rotate 8s linear infinite;
-}
-
+/* Remove light rays - too dramatic */
+.light-rays,
+.ray,
+.ray-1,
+.ray-2,
+.ray-3,
 .ray-4 {
-  width: 140px;
-  height: 1px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(135deg);
-  animation: rotate 15s linear infinite reverse;
+  display: none;
 }
 
 /* Hero Stats */
@@ -506,42 +468,41 @@ p {
 
 .stat {
   text-align: center;
-  padding: 32px 24px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 0;
-  box-shadow: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  padding: var(--space-lg) var(--space-md);
+  background: var(--bg-primary);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-normal);
 }
 
 .stat:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .stat-number {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--white);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
   font-family: var(--font-display);
   line-height: 1;
   margin-bottom: 8px;
 }
 
 .stat-label {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
   margin-top: 0;
   font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 /* Services Section */
 .services {
-  padding: 100px 0;
-  background: var(--off-white);
+  padding: var(--space-3xl) 0;
+  background: var(--bg-primary);
   position: relative;
 }
 
@@ -555,28 +516,30 @@ p {
 
 .section-title {
   margin-bottom: var(--space-md);
-  color: var(--dark-navy);
+  color: var(--text-primary);
 }
 
 .services .section-title {
-  color: var(--dark-navy);
+  color: var(--text-primary);
 }
 
 .services-preview .section-title {
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .section-subtitle {
-  font-size: 1.2rem;
-  color: var(--medium-gray);
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.7;
 }
 
 .services .section-subtitle {
-  color: var(--dark-gray);
+  color: var(--text-secondary);
 }
 
 .services-preview .section-subtitle {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
 }
 
 .services-grid {
@@ -586,14 +549,14 @@ p {
 }
 
 .service-card {
-  background: var(--white);
-  padding: 40px 32px;
-  border-radius: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  background: var(--bg-primary);
+  padding: var(--space-xl) var(--space-lg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--light-gray);
+  border: 1px solid var(--border-subtle);
 }
 
 .service-card::before {
@@ -601,62 +564,65 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--gold);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-  transform-origin: bottom;
+  width: 100%;
+  height: 2px;
+  background: var(--bronze);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+  transform-origin: left;
 }
 
 .service-card:hover::before {
-  transform: scaleY(1);
+  transform: scaleX(1);
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .service-icon {
-  width: 56px;
-  height: 56px;
-  background: var(--gold);
-  border-radius: 4px;
+  width: 52px;
+  height: 52px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-lg);
   box-shadow: none;
-  transition: all 0.3s ease;
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-normal);
 }
 
 .service-card:hover .service-icon {
-  background: var(--gold-light);
+  background: var(--bronze-subtle);
+  border-color: var(--bronze-light);
 }
 
 .service-icon i {
   font-size: 1.5rem;
-  color: var(--dark-navy);
+  color: var(--bronze);
 }
 
 .service-title {
   margin-bottom: var(--space-md);
-  color: var(--dark-navy);
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .services-preview .service-title {
-  color: var(--white);
+  color: var(--text-primary);
 }
 
 .service-description {
   margin-bottom: var(--space-lg);
   line-height: 1.7;
+  color: var(--text-secondary);
 }
 
 .services-preview .service-description {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
 }
 
 .service-features {
@@ -667,25 +633,26 @@ p {
   padding: var(--space-xs) 0;
   padding-left: var(--space-md);
   position: relative;
-  color: var(--dark-gray);
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
 }
 
 .services-preview .service-features li {
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-secondary);
 }
 
 .service-features li::before {
-  content: '✦';
+  content: '•';
   position: absolute;
   left: 0;
-  color: var(--bright-blue);
-  font-weight: bold;
+  color: var(--bronze);
+  font-weight: normal;
 }
 
 /* About Section */
 .about {
-  padding: var(--space-2xl) 0;
-  background: var(--dark-navy);
+  padding: var(--space-3xl) 0;
+  background: var(--bg-secondary);
 }
 
 .about-content {
@@ -697,9 +664,9 @@ p {
 
 .about-story p {
   margin-bottom: var(--space-lg);
-  line-height: 1.8;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
 }
 
 .about-values {
@@ -710,30 +677,32 @@ p {
   display: flex;
   gap: var(--space-md);
   margin-bottom: var(--space-lg);
-  padding: var(--space-md);
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 15px;
+  padding: var(--space-lg);
+  background: var(--bg-primary);
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
   transition: all var(--transition-normal);
 }
 
 .value:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateX(10px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--bronze-light);
 }
 
 .value-icon {
-  width: 50px;
-  height: 50px;
-  background: var(--primary-gradient);
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
 }
 
 .value-icon i {
-  color: var(--charcoal);
+  color: var(--bronze);
   font-size: 1.2rem;
 }
 
@@ -1096,29 +1065,30 @@ p {
 
 .form-group label {
   margin-bottom: var(--space-xs);
-  font-weight: 600;
-  color: var(--gold);
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.9375rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: var(--space-md);
-  border: 2px solid rgba(212, 165, 116, 0.3);
-  border-radius: 10px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
   font-family: var(--font-primary);
   font-size: 1rem;
   transition: all var(--transition-normal);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--white);
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+  border-color: var(--bronze);
+  box-shadow: 0 0 0 3px rgba(155, 130, 107, 0.1);
 }
 
 .form-group textarea {
@@ -1128,10 +1098,10 @@ p {
 
 /* Footer */
 .footer {
-  background: var(--dark-navy);
-  color: var(--white);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
   padding: var(--space-2xl) 0 var(--space-lg) 0;
-  border-top: 1px solid rgba(212, 165, 116, 0.2);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .footer-content {
@@ -1150,12 +1120,15 @@ p {
 
 .footer-description {
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
 }
 
 .footer-title {
   margin-bottom: var(--space-lg);
-  color: var(--gold);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .footer-links {
@@ -1167,13 +1140,14 @@ p {
 }
 
 .footer-links a {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color var(--transition-normal);
+  font-size: 0.9375rem;
 }
 
 .footer-links a:hover {
-  color: var(--gold);
+  color: var(--bronze);
 }
 
 .social-links {
@@ -1182,29 +1156,31 @@ p {
 }
 
 .social-links a {
-  width: 45px;
-  height: 45px;
-  background: rgba(14, 165, 233, 0.2);
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--bright-blue);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: all var(--transition-normal);
 }
 
 .social-links a:hover {
-  background: var(--bright-blue);
-  color: var(--white);
-  transform: translateY(-3px);
+  background: var(--bronze-subtle);
+  border-color: var(--bronze);
+  color: var(--bronze);
 }
 
 .footer-bottom {
   text-align: center;
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-tertiary);
+  font-size: 0.875rem;
 }
 
 /* Animations */
