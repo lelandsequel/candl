@@ -2,6 +2,7 @@
 # Publish directory is the repo root
 [build]
   publish = "."
+  command = "echo 'Static site - no build required'"
 
 # Cache static assets aggressively
 [[headers]]
