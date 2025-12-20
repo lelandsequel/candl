@@ -6,7 +6,7 @@ export const CTA_LINK = `mailto:${CONTACT_EMAIL}?subject=C%26L%20Strategy%20Intr
 
 export default function Navigation() {
     return (
-        <header className="flex items-center justify-between gap-3">
+        <header className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-6 md:px-6 lg:px-8">
             <Link href="/" className="flex items-center gap-3 group">
                 <div className="h-10 w-10 rounded-2xl border border-slate-800 bg-slate-950/60 p-[3px] transition-transform group-hover:scale-105">
                     <div className="h-full w-full rounded-[14px] bg-gradient-to-br from-sky-400/40 via-slate-900 to-indigo-400/30" />

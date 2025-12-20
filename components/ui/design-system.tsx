@@ -78,3 +78,42 @@ export const BlueprintBackground = () => (
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1121]/60 via-[#0B1121]/40 to-[#0B1121]/80" />
     </div>
 );
+
+interface ImmersiveSectionProps {
+    children: React.ReactNode;
+    backgroundImage?: string;
+    overlayOpacity?: number; // 0 to 1
+    className?: string;
+}
+
+export function ImmersiveSection({
+    children,
+    backgroundImage,
+    overlayOpacity = 0.85,
+    className
+}: ImmersiveSectionProps) {
+    return (
+        <section className={cn("relative w-full overflow-hidden min-h-[600px] flex flex-col justify-center py-24", className)}>
+            {/* Background Image Layer */}
+            {backgroundImage && (
+                <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+                    style={{ backgroundImage: `url('${backgroundImage}')` }}
+                />
+            )}
+
+            {/* Overlay Layer */}
+            <div
+                className="absolute inset-0 bg-[#070A12] pointer-events-none"
+                style={{ opacity: overlayOpacity }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#070A12] via-transparent to-[#070A12] pointer-events-none opacity-90" />
+
+
+            {/* Content Container */}
+            <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-8">
+                {children}
+            </div>
+        </section>
+    );
+}

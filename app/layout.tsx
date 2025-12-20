@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col bg-[#070A12] text-slate-100 antialiased pt-8 px-4 md:px-6 lg:px-8">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-12">
-          <Navigation />
+      <body className="flex min-h-screen flex-col bg-[#070A12] text-slate-100 antialiased">
+        <Navigation />
+        <main className="flex-1 w-full">
           {children}
-          <Footer />
-        </div>
+        </main>
+        <Footer />
       </body>
     </html>
   );
