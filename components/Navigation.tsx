@@ -41,6 +41,12 @@ export default function Navigation() {
                     Case Work
                 </Link>
                 <Link
+                    href="/construction"
+                    className="rounded-full px-3 py-2 text-sm text-slate-300 hover:bg-slate-900/60 hover:text-slate-100 transition-colors"
+                >
+                    Construction
+                </Link>
+                <Link
                     href="/about"
                     className="rounded-full px-3 py-2 text-sm text-slate-300 hover:bg-slate-900/60 hover:text-slate-100 transition-colors"
                 >

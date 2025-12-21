@@ -28,7 +28,9 @@ export default function Page() {
                             <Pill>Software architecture</Pill>
                             <Pill>Supply chain & logistics</Pill>
                             <Pill>Finance & controls</Pill>
-                            <Pill>Construction</Pill>
+                            <Link href="/construction" className="hover:opacity-80 transition-opacity">
+                                <Pill>Construction</Pill>
+                            </Link>
                         </div>
 
                         <div className="mt-10 flex flex-wrap gap-4">
@@ -40,10 +42,10 @@ export default function Page() {
                                 <span aria-hidden>↓</span>
                             </Link>
                             <Link
-                                href="/case-work"
-                                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/50 bg-emerald-400/10 px-6 py-3 text-sm font-medium text-emerald-100 hover:bg-emerald-400/20 backdrop-blur-md shadow-lg shadow-emerald-900/20"
+                                href="/construction"
+                                className="inline-flex items-center gap-2 rounded-full border border-amber-500/50 bg-amber-500/10 px-6 py-3 text-sm font-medium text-amber-100 hover:bg-amber-400/20 backdrop-blur-md shadow-lg shadow-amber-900/20"
                             >
-                                <span>See case work</span>
+                                <span>Construction</span>
                                 <span aria-hidden>↗</span>
                             </Link>
                         </div>
