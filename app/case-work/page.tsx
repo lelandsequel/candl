@@ -5,7 +5,7 @@ import { CTA_LINK } from "@/components/Navigation";
 export default function CaseWorkPage() {
     return (
         <main className="flex-1 w-full">
-            <ImmersiveSection backgroundImage="/construction.png" overlayOpacity={0.85} className="min-h-[70vh]">
+            <ImmersiveSection backgroundImage="/blueprint-bg.png" overlayOpacity={0.85} className="min-h-[70vh]">
                 <SectionKicker>Case work</SectionKicker>
                 <h1 className="mt-3 text-3xl font-semibold text-slate-50 md:text-5xl">
                     The kind of problems we like.

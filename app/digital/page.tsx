@@ -7,7 +7,7 @@ export default function DigitalPage() {
     return (
         <main className="flex-1 w-full relative">
             {/* Hero Section */}
-            <ImmersiveSection backgroundImage="/oilfield-magic-hour.png" overlayOpacity={0.9} className="min-h-[50vh]">
+            <ImmersiveSection backgroundImage="/digital-bg.png" overlayOpacity={0.9} className="min-h-[50vh]">
                 <div className="max-w-4xl">
                     <SectionKicker>Infrastructure, Not Marketing</SectionKicker>
                     <h1 className="mt-4 text-4xl font-semibold text-slate-50 md:text-6xl">

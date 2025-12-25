@@ -35,6 +35,12 @@ export default function Navigation() {
                     How We Work
                 </Link>
                 <Link
+                    href="/digital"
+                    className="rounded-full px-3 py-2 text-sm text-slate-300 hover:bg-slate-900/60 hover:text-slate-100 transition-colors"
+                >
+                    Digital
+                </Link>
+                <Link
                     href="/case-work"
                     className="rounded-full px-3 py-2 text-sm text-slate-300 hover:bg-slate-900/60 hover:text-slate-100 transition-colors"
                 >
