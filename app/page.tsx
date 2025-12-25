@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { MiniStat, SectionKicker, Pill, ImmersiveSection } from "@/components/ui/design-system";
+import { CTA_LINK, CONTACT_EMAIL } from "@/components/Navigation";
 
 export default function Page() {
     return (
         <main className="flex-1 w-full">
-            <ImmersiveSection backgroundImage="/oilfield-magic-hour.png" overlayOpacity={0.7} className="min-h-[85vh]">
+            <ImmersiveSection backgroundImage="/oilfield-painting.jpg" overlayOpacity={0.7} className="min-h-[85vh]">
                 {/* Hero */}
                 <div className="grid gap-10 md:grid-cols-12 md:items-start md:place-content-center">
                     <div className="md:col-span-12 lg:col-span-7">
@@ -90,6 +91,35 @@ export default function Page() {
                             <MiniStat label="Bias" value="Execution over theory" />
                             <MiniStat label="Result" value="Clarity, speed, control" />
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Final CTA Section */}
+            <section className="bg-[#0B1121] py-24 border-t border-slate-800/50">
+                <div className="mx-auto w-full max-w-4xl px-4 text-center">
+                    <SectionKicker>Ready when you are</SectionKicker>
+                    <h2 className="mt-4 text-3xl font-semibold text-slate-50 md:text-5xl">
+                        Let’s build something real.
+                    </h2>
+                    <p className="mt-6 text-lg leading-relaxed text-slate-300">
+                        Stop admiring the problem. We’ll help you define the system, build the tools, and take control of your operations.
+                    </p>
+                    <div className="mt-10 flex flex-wrap justify-center gap-4">
+                        <a
+                            href={CTA_LINK}
+                            className="inline-flex items-center gap-2 rounded-full border border-sky-500/50 bg-sky-500/10 px-8 py-4 text-sm font-medium text-sky-100 hover:bg-sky-500/20 transition-colors shadow-lg shadow-sky-900/20"
+                        >
+                            <span>Start a project</span>
+                            <span aria-hidden>↗</span>
+                        </a>
+                        <a
+                            href={`mailto:${CONTACT_EMAIL}`}
+                            className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/50 px-8 py-4 text-sm font-medium text-slate-300 hover:bg-slate-800 transition-colors"
+                        >
+                            <span>Email us</span>
+                            <span aria-hidden>✉</span>
+                        </a>
                     </div>
                 </div>
             </section>

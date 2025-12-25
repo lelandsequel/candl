@@ -16,11 +16,13 @@ export default function CaseWorkPage() {
                 </p>
 
                 <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    <Card
-                        title="ChevronLift"
-                        body="Automated crude & product scheduling platform. Optimizes movements across pipelines, terminals, and marine logistics."
-                        bullets={["AI-assisted scheduling", "Conflict detection", "Feasibility analysis"]}
-                    />
+                    <Link href="/case-work/chevron-lift" className="block group transition-transform hover:scale-[1.01]">
+                        <Card
+                            title="ChevronLift"
+                            body="Automated crude & product scheduling platform. Optimizes movements across pipelines, terminals, and marine logistics."
+                            bullets={["AI-assisted scheduling", "Conflict detection", "Feasibility analysis"]}
+                        />
+                    </Link>
                     <Card
                         title="UnitedOps"
                         body="Network irregular operations optimizer. A single cockpit for managing hub disruptions and recovery planning."
