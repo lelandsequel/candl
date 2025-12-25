@@ -95,6 +95,76 @@ export default function Page() {
                 </div>
             </section>
 
+            {/* Digital Systems Section */}
+            <section className="bg-[#0B1121] py-24 border-t border-slate-900">
+                <div className="mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-2 gap-16 items-start">
+                        <div>
+                            <SectionKicker>Digital Infrastructure</SectionKicker>
+                            <h2 className="mt-3 text-3xl font-semibold text-slate-50">
+                                Digital Systems & Search Infrastructure
+                            </h2>
+                            <p className="mt-4 text-base leading-relaxed text-slate-300">
+                                Some problems don’t live on job sites or balance sheets — but they still need to run in production.
+                            </p>
+                            <p className="mt-4 text-base leading-relaxed text-slate-300">
+                                In addition to our work across operations, construction, and complex systems, C&L Strategy designs and builds <strong>digital infrastructure</strong> for companies that need clarity, durability, and leverage — not marketing noise.
+                            </p>
+                            <ul className="mt-6 space-y-3 text-sm text-slate-400">
+                                <li className="flex gap-3">
+                                    <span className="h-1.5 w-1.5 mt-2 rounded-full bg-sky-400/80 shrink-0" />
+                                    <span>Websites built as operational foundations</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="h-1.5 w-1.5 mt-2 rounded-full bg-sky-400/80 shrink-0" />
+                                    <span>Search systems engineered to compound over time</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <span className="h-1.5 w-1.5 mt-2 rounded-full bg-sky-400/80 shrink-0" />
+                                    <span>Digital tooling that supports real decision-making</span>
+                                </li>
+                            </ul>
+                            <p className="mt-6 text-sm italic text-slate-500 border-l-2 border-slate-800 pl-4">
+                                We apply the same operator discipline here as we do everywhere else: rules first, structure before scale, and systems that teams can actually run.
+                            </p>
+                        </div>
+
+                        <div className="rounded-2xl border border-sky-900/30 bg-sky-950/10 p-8">
+                            <h3 className="text-xl font-semibold text-sky-100">
+                                SEO OS™ — Search Built Like Infrastructure
+                            </h3>
+                            <p className="mt-4 text-sm leading-relaxed text-sky-200/80">
+                                SEO OS is our proprietary framework for building long-term search visibility without shortcuts, churn, or dependency on ongoing digital busywork.
+                            </p>
+                            <p className="mt-4 text-sm leading-relaxed text-sky-200/80">
+                                Instead of treating search as campaigns or content, we design it as infrastructure:
+                            </p>
+                            <ul className="mt-4 space-y-2 text-sm text-sky-200/70">
+                                <li className="flex gap-2">
+                                    <span className="text-sky-400">•</span> Deliberate in structure
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-sky-400">•</span> Controlled in expansion
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-sky-400">•</span> Resilient as the business grows
+                                </li>
+                            </ul>
+                            <p className="mt-6 text-xs uppercase tracking-wider font-semibold text-sky-500">
+                                This work is not promotional in nature — it is architectural.
+                            </p>
+
+                            <div className="mt-8 pt-8 border-t border-sky-900/30">
+                                <Link href="/digital" className="inline-flex items-center gap-2 text-sm font-medium text-sky-300 hover:text-sky-200 transition-colors group">
+                                    <span>Learn more about our digital systems</span>
+                                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Final CTA Section */}
             <section className="bg-[#0B1121] py-24 border-t border-slate-800/50">
                 <div className="mx-auto w-full max-w-4xl px-4 text-center">
