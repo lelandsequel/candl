@@ -9,7 +9,7 @@ export default function Navigation() {
     return (
         <header className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-6 md:px-6 lg:px-8">
             <Link href="/" className="flex items-center gap-3 group">
-                <div className="relative h-10 w-10 transition-transform group-hover:scale-105">
+                <div className="relative h-20 w-20 transition-transform group-hover:scale-105">
                     <Image
                         src="/logo-new.png"
                         alt="C&L Strategy Logo"
@@ -18,10 +18,10 @@ export default function Navigation() {
                     />
                 </div>
                 <div>
-                    <p className="text-sm font-semibold tracking-tight text-slate-50">
+                    <p className="text-sm font-semibold tracking-tight text-slate-900">
                         C&L Strategy
                     </p>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-slate-500">
                         Operator-led consulting & systems design
                     </p>
                 </div>
@@ -36,7 +36,7 @@ export default function Navigation() {
                 </Link>
                 <Link
                     href="/how-we-work"
-                    className="rounded-full px-3 py-2 text-sm text-slate-300 hover:bg-slate-900/60 hover:text-slate-100 transition-colors"
+                    className="rounded-full px-3 py-2 text-sm text-slate-600 hover:bg-slate-200/60 hover:text-slate-900 transition-colors"
                 >
                     How We Work
                 </Link>
@@ -76,8 +76,8 @@ export default function Navigation() {
                 <a
                     href={CTA_LINK}
                     className={cn(
-                        "inline-flex items-center gap-2 rounded-full border border-sky-400/60 bg-sky-400/10 px-4 py-2 text-sm font-medium text-sky-100",
-                        "hover:bg-sky-400/20 transition-colors"
+                        "inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-medium text-sky-700",
+                        "hover:bg-sky-100 transition-colors"
                     )}
                 >
                     <span>Contact</span>
