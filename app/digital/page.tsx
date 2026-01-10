@@ -140,7 +140,7 @@ export default function DigitalPage() {
             <section className="bg-[#0B1121] py-24 border-t border-slate-800">
                 <div className="mx-auto w-full max-w-5xl px-4 md:px-6 lg:px-8">
                     <SectionKicker>Engagement Models</SectionKicker>
-                    <div className="mt-8 grid gap-8 md:grid-cols-2">
+                    <div className="mt-8 grid gap-8 md:grid-cols-3">
                         {/* Website Setup */}
                         <div className="rounded-2xl border border-slate-700 bg-slate-800/20 p-8 flex flex-col">
                             <div>
@@ -148,10 +148,25 @@ export default function DigitalPage() {
                                 <p className="text-sm text-slate-400 mt-1">One-time foundational build</p>
                             </div>
                             <div className="mt-6">
-                                <span className="text-4xl font-bold text-white">$2,000</span>
+                                <span className="text-sm text-slate-400">Starts at</span>
+                                <span className="text-4xl font-bold text-white block">$2,000</span>
                             </div>
                             <p className="mt-6 text-sm text-slate-300 leading-relaxed flex-1">
                                 Includes full site structure, core pages, and technical foundations.
+                            </p>
+                        </div>
+
+                        {/* AEO Audit */}
+                        <div className="rounded-2xl border border-slate-700 bg-slate-800/20 p-8 flex flex-col">
+                            <div>
+                                <h3 className="text-lg font-semibold text-slate-50">AEO Audit</h3>
+                                <p className="text-sm text-slate-400 mt-1">One-time assessment</p>
+                            </div>
+                            <div className="mt-6">
+                                <span className="text-4xl font-bold text-white">$199</span>
+                            </div>
+                            <p className="mt-6 text-sm text-slate-300 leading-relaxed flex-1">
+                                Wondering how your business is set for AI Search? We'll do a full SEO/AEO audit and show you where you stand.
                             </p>
                         </div>
 
@@ -165,8 +180,11 @@ export default function DigitalPage() {
                                 <p className="text-sm text-slate-400 mt-1">Ongoing system expansion</p>
                             </div>
                             <div className="mt-6">
-                                <span className="text-4xl font-bold text-white">$1,200</span>
-                                <span className="text-slate-400 ml-2">/ month</span>
+                                <span className="text-sm text-slate-400">Starts at</span>
+                                <div>
+                                    <span className="text-4xl font-bold text-white">$1,200</span>
+                                    <span className="text-slate-400 ml-2">/ month</span>
+                                </div>
                             </div>
                             <p className="mt-6 text-sm text-slate-300 leading-relaxed">
                                 Designed to compound over time. Minimum commitment required to protect system integrity.
