@@ -149,7 +149,7 @@ export default function DigitalPage() {
                             </div>
                             <div className="mt-6">
                                 <span className="text-sm text-slate-400">Starts at</span>
-                                <span className="text-4xl font-bold text-white block">$2,000</span>
+                                <span className="text-4xl font-bold text-white block">$15,000</span>
                             </div>
                             <p className="mt-6 text-sm text-slate-300 leading-relaxed flex-1">
                                 Includes full site structure, core pages, and technical foundations.
@@ -182,7 +182,7 @@ export default function DigitalPage() {
                             <div className="mt-6">
                                 <span className="text-sm text-slate-400">Starts at</span>
                                 <div>
-                                    <span className="text-4xl font-bold text-white">$1,200</span>
+                                    <span className="text-4xl font-bold text-white">$5,000</span>
                                     <span className="text-slate-400 ml-2">/ month</span>
                                 </div>
                             </div>
