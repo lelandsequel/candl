@@ -93,25 +93,35 @@ export function ImmersiveSection({
     className
 }: ImmersiveSectionProps) {
     return (
-        <section className={cn("relative w-full overflow-hidden min-h-[600px] flex flex-col justify-center py-24", className)}>
-            {/* Background Image Layer */}
+        <section className={cn("relative w-full min-h-screen flex flex-col", className)}>
+            {/* Background Image Layer - Full coverage */}
             {backgroundImage && (
                 <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-                    style={{ backgroundImage: `url('${backgroundImage}')` }}
+                    className="absolute inset-0 w-full h-full"
+                    style={{
+                        backgroundImage: `url('${backgroundImage}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
                 />
             )}
 
             {/* Overlay Layer */}
-            <div
-                className="absolute inset-0 bg-[#070A12] pointer-events-none"
-                style={{ opacity: overlayOpacity }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#070A12] via-transparent to-[#070A12] pointer-events-none opacity-90" />
+            {backgroundImage && (
+                <div
+                    className="absolute inset-0 w-full h-full"
+                    style={{ backgroundColor: '#070A12', opacity: overlayOpacity }}
+                />
+            )}
 
+            {/* Gradient overlay */}
+            {backgroundImage && (
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-[#070A12] via-transparent to-[#070A12] opacity-90" />
+            )}
 
             {/* Content Container */}
-            <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-8">
+            <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-8 pt-28 md:pt-32 pb-24 flex flex-col justify-center flex-1">
                 {children}
             </div>
         </section>

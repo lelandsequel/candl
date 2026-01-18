@@ -1,22 +1,23 @@
-import { Card, SectionKicker, GlowingBackground } from "@/components/ui/design-system";
+import { Card, SectionKicker, ImmersiveSection } from "@/components/ui/design-system";
 import { SchedulingCockpit } from "@/components/mocks/SchedulingCockpit";
 
 export default function HowWeWorkPage() {
     return (
-        <main className="relative min-h-[calc(100vh-140px)] overflow-hidden">
-            <GlowingBackground />
-            <div className="mx-auto flex max-w-[90rem] flex-col gap-12 px-4 pb-16 pt-8 md:px-6 lg:px-8">
-                <section className="scroll-mt-24">
-                    <SectionKicker>How we work</SectionKicker>
-                    <h1 className="mt-3 text-2xl font-semibold text-slate-50">
-                        We don’t “advise.” We build.
-                    </h1>
-                    <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300 md:text-[0.95rem]">
-                        Our method is simple: embed in the operation, design the system, ship something real, and
-                        leave you with a playbook and tooling your team can run without us.
-                    </p>
+        <main className="flex-1 w-full">
+            <ImmersiveSection backgroundImage="/oilfield-blueprint.png" overlayOpacity={0.85} className="min-h-[70vh]">
+                <SectionKicker>How we work</SectionKicker>
+                <h1 className="mt-3 text-3xl font-semibold text-slate-50 md:text-5xl">
+                    We don't "advise." We build.
+                </h1>
+                <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-300 md:text-lg">
+                    Our method is simple: embed in the operation, design the system, ship something real, and
+                    leave you with a playbook and tooling your team can run without us.
+                </p>
+            </ImmersiveSection>
 
-                    <div className="mt-12 flex flex-col lg:flex-row gap-12">
+            <section className="bg-[#070A12] py-16 border-t border-slate-900">
+                <div className="mx-auto w-full max-w-[90rem] px-4 md:px-6 lg:px-8">
+                    <div className="flex flex-col lg:flex-row gap-12">
                         {/* Left Column: The Process */}
                         <div className="flex-1 flex flex-col gap-4 max-w-lg">
                             <Card
@@ -25,7 +26,7 @@ export default function HowWeWorkPage() {
                             />
                             <Card
                                 title="2) Design the system"
-                                body="We map workflows, data, ownership, and the decision loop — then define what “good” looks like in production."
+                                body="We map workflows, data, ownership, and the decision loop — then define what 'good' looks like in production."
                             />
                             <Card
                                 title="3) Ship something real"
@@ -47,8 +48,8 @@ export default function HowWeWorkPage() {
                             <SchedulingCockpit />
                         </div>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </main>
     );
 }
