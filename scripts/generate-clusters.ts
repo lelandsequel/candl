@@ -60,7 +60,7 @@ function generateServiceLocationPages(): GeneratedPage[] {
             description: "We scale successful strategies and expand reach over time.",
           },
         ],
-        faqs: getFAQsForCombo(service.slug, undefined, locationSlug, 3),
+        faqs: getFAQsForCombo(service.slug, undefined, locationSlug, 3).map(({ question, answer }) => ({ question, answer })),
         relatedSlugs: [
           `solutions/${service.slug === "digital" ? "seo-foundation-rebuild" : service.slug === "fractional" ? "ops-dashboard-and-reporting" : "construction-services"}`,
           `industries/${service.industries[0] || "private-equity"}`,
@@ -116,7 +116,7 @@ function generateServiceIndustryPages(): GeneratedPage[] {
             description: "We continuously optimize and scale successful strategies.",
           },
         ],
-        faqs: getFAQsForCombo(service.slug, industrySlug, undefined, 3),
+        faqs: getFAQsForCombo(service.slug, industrySlug, undefined, 3).map(({ question, answer }) => ({ question, answer })),
         relatedSlugs: [
           `solutions/${service.slug === "digital" ? "seo-foundation-rebuild" : service.slug === "fractional" ? "ops-dashboard-and-reporting" : "construction-services"}`,
           `industries/${industrySlug}`,
@@ -187,7 +187,7 @@ function generateServiceIndustryLocationPages(): GeneratedPage[] {
               description: "We continuously optimize and scale successful strategies.",
             },
           ],
-          faqs: getFAQsForCombo(service.slug, industrySlug, locationSlug, 3),
+          faqs: getFAQsForCombo(service.slug, industrySlug, locationSlug, 3).map(({ question, answer }) => ({ question, answer })),
           relatedSlugs: [
             `solutions/${service.slug === "digital" ? "seo-foundation-rebuild" : service.slug === "fractional" ? "ops-dashboard-and-reporting" : "construction-services"}`,
             `industries/${industrySlug}`,

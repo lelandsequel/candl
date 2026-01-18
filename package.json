@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "packageManager": "pnpm@10.11.1",
   "scripts": {
     "dev": "next dev",
+    "gen": "tsx scripts/generate-clusters.ts",
+    "validate": "tsx scripts/validate-content.ts",
+    "prebuild": "pnpm run gen && pnpm run validate",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "gen": "tsx scripts/generate-clusters.ts",
-    "validate": "tsx scripts/validate-content.ts"
+    "lint": "next lint"
   },
   "keywords": [],
   "author": "",
