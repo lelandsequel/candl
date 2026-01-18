@@ -1,0 +1,121 @@
+export interface Service {
+  slug: string;
+  name: string;
+  shortDescription: string;
+  valueProps: string[];
+  industries: string[]; // industry slugs this service applies to
+  locations: string[]; // location slugs this service is available in
+}
+
+export const services: Service[] = [
+  {
+    slug: "digital",
+    name: "Digital Growth",
+    shortDescription: "SEO, conversion optimization, and scalable marketing systems built as infrastructure.",
+    valueProps: [
+      "SEO OS™ framework for long-term search visibility",
+      "Conversion-optimized websites that close deals",
+      "Programmatic SEO at scale without thin content",
+      "Answer Engine Optimization for AI search",
+    ],
+    industries: [
+      "private-equity",
+      "oil-and-gas-services",
+      "construction-services",
+      "medspa",
+      "law-firm",
+      "dental",
+      "home-services",
+      "commercial-services",
+      "b2b-saas",
+      "automotive-dealers",
+      "real-estate-development",
+      "logistics-and-transport",
+      "wealth-management",
+      "concierge-and-personal-brand",
+    ],
+    locations: [
+      "houston-tx",
+      "dallas-tx",
+      "austin-tx",
+      "san-antonio-tx",
+      "phoenix-az",
+      "scottsdale-az",
+      "mesa-az",
+      "tempe-az",
+      "katy-tx",
+      "sugar-land-tx",
+      "the-woodlands-tx",
+      "pearland-tx",
+      "pasadena-tx",
+      "baytown-tx",
+      "spring-tx",
+      "cypress-tx",
+      "memorial-tx",
+      "river-oaks-tx",
+      "montrose-tx",
+      "midtown-houston-tx",
+    ],
+  },
+  {
+    slug: "fractional",
+    name: "Fractional Ops",
+    shortDescription: "Operator-led fractional operations leadership. Process improvement, systems design, and execution.",
+    valueProps: [
+      "Operator-first approach, not consultant theory",
+      "Systems that survive contact with reality",
+      "Fractional leadership without dependency",
+      "Process improvement that drives shareholder value",
+    ],
+    industries: [
+      "private-equity",
+      "oil-and-gas-services",
+      "energy-logistics",
+      "construction-services",
+      "b2b-saas",
+      "logistics-and-transport",
+      "wealth-management",
+    ],
+    locations: [
+      "houston-tx",
+      "dallas-tx",
+      "austin-tx",
+      "san-antonio-tx",
+      "phoenix-az",
+      "scottsdale-az",
+      "katy-tx",
+      "sugar-land-tx",
+      "the-woodlands-tx",
+    ],
+  },
+  {
+    slug: "construction",
+    name: "Construction Ops",
+    shortDescription: "Construction operations, project management, and field systems built for real job sites.",
+    valueProps: [
+      "Field-tested systems, not office theory",
+      "Project management that works on job sites",
+      "Operations that scale with growth",
+      "Systems that reduce risk and improve margins",
+    ],
+    industries: [
+      "construction-services",
+      "real-estate-development",
+      "commercial-services",
+    ],
+    locations: [
+      "houston-tx",
+      "dallas-tx",
+      "austin-tx",
+      "san-antonio-tx",
+      "phoenix-az",
+      "scottsdale-az",
+      "katy-tx",
+      "sugar-land-tx",
+      "the-woodlands-tx",
+      "pearland-tx",
+      "pasadena-tx",
+      "spring-tx",
+    ],
+  },
+];

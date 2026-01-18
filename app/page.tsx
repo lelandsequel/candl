@@ -1,10 +1,41 @@
 import Link from "next/link";
 import { MiniStat, SectionKicker, Pill, ImmersiveSection } from "@/components/ui/design-system";
 import { CTA_LINK, CONTACT_EMAIL } from "@/components/Navigation";
+import { JsonLd } from "@/components/site/JsonLd";
 
 export default function Page() {
+    const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "C&L Strategy",
+        description: "Operator-led consulting and systems design: process improvement, software architecture, supply chain, finance, accounting, and construction.",
+        url: "https://cl-strategy.com",
+        logo: "https://cl-strategy.com/logo-new.png",
+        contactPoint: {
+            "@type": "ContactPoint",
+            email: CONTACT_EMAIL,
+            contactType: "Customer Service",
+        },
+        sameAs: [],
+    };
+
+    const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "C&L Strategy",
+        url: "https://cl-strategy.com",
+        potentialAction: {
+            "@type": "SearchAction",
+            target: "https://cl-strategy.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string",
+        },
+    };
+
     return (
-        <main className="flex-1 w-full">
+        <>
+            <JsonLd data={organizationSchema} />
+            <JsonLd data={websiteSchema} />
+            <main className="flex-1 w-full">
             <ImmersiveSection backgroundImage="/oilfield-painting.jpg" overlayOpacity={0.7} className="min-h-[85vh]">
                 {/* Hero */}
                 <div className="grid gap-10 md:grid-cols-12 md:items-start md:place-content-center">
@@ -194,5 +225,6 @@ export default function Page() {
                 </div>
             </section>
         </main>
+        </>
     );
 }
