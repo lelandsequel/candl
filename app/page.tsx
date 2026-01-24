@@ -41,7 +41,7 @@ export default function Page() {
         <section className="relative h-screen flex items-end pb-20 overflow-hidden">
           {/* Video */}
           <video
-            src="/CL%20BG.mov"
+            src="https://res.cloudinary.com/dxfk5plrn/video/upload/v1769261861/CL_BG_wo9xy2.mov"
             autoPlay
             loop
             muted
