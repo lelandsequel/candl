@@ -43,10 +43,10 @@ export default function ConstructionPage() {
                     />
                 </div>
 
-                <div className="mt-16 rounded-2xl border border-amber-500/20 bg-amber-950/20 backdrop-blur-md p-8 shadow-xl">
+                <div className="mt-16 rounded-2xl border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-md p-8 shadow-xl shadow-cyan-900/20">
                     <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
                         <div>
-                            <h2 className="text-2xl font-semibold text-slate-50">
+                            <h2 className="text-2xl font-bold text-slate-50">
                                 Need a bid on a project?
                             </h2>
                             <p className="mt-2 text-sm text-slate-300 max-w-xl">
@@ -55,10 +55,10 @@ export default function ConstructionPage() {
                         </div>
                         <a
                             href={CTA_LINK}
-                            className="inline-flex items-center gap-2 rounded-full border border-amber-500/60 bg-amber-500/10 px-8 py-4 text-sm font-medium text-amber-100 hover:bg-amber-500/20 transition-colors shadow-lg shadow-amber-900/20 whitespace-nowrap"
+                            className="group inline-flex items-center gap-2 rounded-full border border-cyan-500/50 bg-cyan-500/10 px-8 py-4 text-sm font-medium text-cyan-100 hover:bg-cyan-500/20 transition-all shadow-lg shadow-cyan-900/30 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] whitespace-nowrap"
                         >
                             <span>Request a Quote</span>
-                            <span aria-hidden>↗</span>
+                            <span aria-hidden className="transition-transform group-hover:translate-x-1">↗</span>
                         </a>
                     </div>
                 </div>
