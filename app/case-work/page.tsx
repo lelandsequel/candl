@@ -35,7 +35,7 @@ export default function CaseWorkPage() {
                     />
                     <Card
                         title="MortgageOps"
-                        body="Home lending portfolio control tower for JPMorgan. End-to-end visibility from application to funding."
+                        body="Home lending portfolio control tower for a large financial institution. End-to-end visibility from application to funding."
                         bullets={["Portfolio visibility", "Execution control", "Bottleneck identification"]}
                     />
                     <Card
